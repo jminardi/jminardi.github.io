@@ -1,6 +1,5 @@
 #! /bin/bash
 
-make html
 cd ..
 ls | grep -v CNAME | xargs rm -rf
 mv .source/output/* .
