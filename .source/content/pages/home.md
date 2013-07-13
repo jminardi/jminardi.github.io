@@ -6,7 +6,7 @@ Hi, I'm [Jack](https://docs.google.com/document/d/1fMJCFs8jrgIQ2FnjcwwQfM3wl6l0I
 ==============
 
 I put my codes on [github](http://www.github.com/jminardi) and my tweets on
-[twitter](http://www.twitter.com/jackminardi).
+[twitter](http://www.twitter.com/jackminardi). test
 
 I am an electrical engineer by training, and a software developer by craft. I
 went to school at [Vanderbilt University in Nashville
