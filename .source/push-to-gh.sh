@@ -1,8 +1,11 @@
 #! /bin/bash
 
-mv ../.git/ ../.gitignore ../CNAME .
-make html
-
+cd ..
+ls | grep -v CNAME | xargs -rf
+mv .source/output/* .
+git add .
+git commit -m 'rebuild'
+git push origin master
 
 
 #rm -rf .old-gh-pages
