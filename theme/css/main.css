@@ -151,12 +151,12 @@ footer {
   font-family: helvetica, sans-serif;
   font-size: 13px;
   letter-spacing: 4px;
-  margin-left: 20px;
+  margin-left: -40px;
 }
 /* line 128, ../../compass/src/main.scss */
 footer a {
   border-bottom: none;
-  color: #c0c0c0;
+  color: #bbb;
 }
 /* line 132, ../../compass/src/main.scss */
 footer li {

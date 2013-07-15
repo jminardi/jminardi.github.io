@@ -8,6 +8,7 @@ SITEURL = u'http://jack.minardi.org'
 
 TIMEZONE = 'Europe/Paris'
 DEFAULT_LANG = u'en'
+DEFAULT_DATE_FORMAT = '%B %Y'
 
 THEME = '/Users/jminardi/pelican-themes/mnmlist'
 
@@ -25,12 +26,6 @@ FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 FEED_ATOM = None
-
-# Blogroll
-#LINKS = (('Pelican', 'http://getpelican.com/'),
-#         ('Python.org', 'http://python.org/'),
-#         ('Jinja2', 'http://jinja.pocoo.org/'),
-#         ('You can modify those links in your config file', '#'),)
 
 # Social widget
 SOCIAL = (('twitter', 'https://www.twitter.com/jackminardi'),
