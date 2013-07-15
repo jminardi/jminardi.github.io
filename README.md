@@ -2,4 +2,4 @@ jminardi.github.io
 ==================
 
 Repo containing my personal website. Made with [pelican](http://docs.getpelican.com/).
-You can see the site running at [jack.minardi.org](https://jack.minardi.org)
+You can see the site running at [jack.minardi.org](http://jack.minardi.org)
