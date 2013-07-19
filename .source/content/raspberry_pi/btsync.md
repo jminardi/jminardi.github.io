@@ -43,6 +43,9 @@ devices to it. (It is important to note however that the Pi is not a special
 
 ## Installing BitTorrent Sync on the Raspberry Pi
 
+NOTE: I am using Raspbian Wheezy, but I suspect these ideas will translate to
+other operating systems.
+
 You need to grab the [ARM
 build](http://btsync.s3-website-us-east-1.amazonaws.com/btsync_arm.tar.gz) of
 BitTorrent Sync:
