@@ -25,7 +25,7 @@ limited to only text files.
 [BitTorrent Sync](http://labs.bittorrent.com/experiments/sync.html) is a free
 utility that uses the bittorrent protocal to keep folders in sync across
 devices. It can be used with OS X, Windows, Android and Linux. It is not
-however open source, which might be a deal breaker for some.  But if this pill
+however open source, which might be a deal breaker for some.  But if this 
 isn't too big a pill for you to swallow, with a little bit of work you can use
 btsync as a free syncing solution.
 
