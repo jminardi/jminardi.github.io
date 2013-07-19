@@ -151,7 +151,7 @@ to fit your needs, and restart the process.
     sudo ./btsync --config btsync.conf
 
 HINT: Use [jsonlint](http://jsonlint.com/) to validate your config file if
-btsync complains. Also make sure to modify the `/etc/init.d/btsybc` script to
+btsync complains. Also make sure to modify the `/etc/init.d/btsync` script to
 use the config file as well.
 
 Questions? Hit me up on twitter
