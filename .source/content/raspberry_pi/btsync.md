@@ -6,7 +6,7 @@ date: 20/7/2013
 ![Messy Desk](|filename|/images/messy-desk.png)
 [source](http://www.flickr.com/photos/jazzmasterson/278672002/)
 
-I like to take long running notes, jotting down and idea here and there when
+I like to take long running notes, jotting down an idea here and there when
 one pops up. I never know which devices I will have with me, so I like to have
 these notes synced across all of them.
 
@@ -23,7 +23,7 @@ limited to only text files.
 ## Enter BitTorrent Sync
 
 [BitTorrent Sync](http://labs.bittorrent.com/experiments/sync.html) is a free
-utility that uses the bittorrent protocal to keep folders in sync across
+utility that uses the bittorrent protocol to keep folders in sync across
 devices. It can be used with OS X, Windows, Android and Linux. It is not
 however open source, which might be a deal breaker for some.  But if this 
 isn't too big a pill for you to swallow, with a little bit of work you can use
