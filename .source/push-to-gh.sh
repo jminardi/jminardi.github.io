@@ -1,7 +1,7 @@
 #! /bin/bash
 
 cd ..
-ls | grep -v "CNAME README.md" | xargs rm -rf
+ls | egrep -v "CNAME|README.md" | xargs rm -rf
 mv .source/output/* .
 git status
 git add .
