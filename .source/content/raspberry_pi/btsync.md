@@ -159,3 +159,6 @@ use the config file as well.
 
 Questions? Hit me up on twitter
 [@jackminardi](http://www.twitter.com/jackminardi)
+
+You can also follow the
+[discussion on HN](https://news.ycombinator.com/item?id=6071604)
