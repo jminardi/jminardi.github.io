@@ -1,5 +1,5 @@
 title: open('/dev/real_world')
-date: 7/8/2013
+date: 8/7/2013
 
 I gave a talk at SciPy 2013 titled **`open('dev/real_world')` Raspberry Pi
 Sensor and Actuator Control.** You can find the video on

@@ -56,6 +56,10 @@ time {
 
 /* line 51, ../../compass/src/main.scss */
 img {
+  border: 5px solid #ccc;
+}
+
+#borderless {
   border: none;
 }
 
@@ -108,7 +112,6 @@ strong {
 
 /* line 92, ../../compass/src/main.scss */
 tt, pre {
-  background-color: #fafafa;
   font-family: Inconsolata, Monaco, monospace;
   line-height: 1.2em;
 }
@@ -116,8 +119,10 @@ tt, pre {
 /* line 98, ../../compass/src/main.scss */
 pre {
   font-size: 0.8em;
-  overflow: auto;
+  overflow: visible;
   padding: 10px;
+  margin-left: 40px;
+  border-left: 3px solid #abc;
 }
 
 /* line 104, ../../compass/src/main.scss */

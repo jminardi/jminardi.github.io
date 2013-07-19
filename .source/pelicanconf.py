@@ -6,7 +6,7 @@ AUTHOR = u'Jack Minardi'
 SITENAME = u'jack.minardi.org'
 SITEURL = u'http://jack.minardi.org'
 
-TIMEZONE = 'Europe/Paris'
+TIMEZONE = 'CST'
 DEFAULT_LANG = u'en'
 DEFAULT_DATE_FORMAT = '%B %Y'
 
