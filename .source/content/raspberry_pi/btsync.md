@@ -4,6 +4,7 @@ date: 20/7/2013
 ## Notes Everywhere
 
 ![Messy Desk](|filename|/images/messy-desk.png)
+[source](http://www.flickr.com/photos/jazzmasterson/278672002/)
 
 I like to take long running notes, jotting down and idea here and there when
 one pops up. I never know which devices I will have with me, so I like to have
