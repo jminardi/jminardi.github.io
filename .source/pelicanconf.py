@@ -10,7 +10,7 @@ TIMEZONE = 'CST'
 DEFAULT_LANG = u'en'
 DEFAULT_DATE_FORMAT = '%B %Y'
 
-THEME = '/Users/jminardi/pelican-themes/mnmlist'
+THEME = 'theme'
 
 PAGE_URL = '{slug}'
 PAGE_SAVE_AS = '{slug}/index.html'
@@ -33,7 +33,4 @@ SOCIAL = (('twitter', 'https://www.twitter.com/jackminardi'),
           ('linkedin', 'http://www.linkedin.com/in/jackminardi'),
     )
 
-DEFAULT_PAGINATION = False
-
-# Uncomment following line if you want document-relative URLs when developing
-RELATIVE_URLS = True
+DEFAULT_PAGINATION = True
