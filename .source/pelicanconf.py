@@ -27,10 +27,6 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 FEED_ATOM = None
 
-# Social widget
-SOCIAL = (('twitter', 'https://www.twitter.com/jackminardi'),
-          ('github', 'https://www.github.com/jminardi'),
-          ('linkedin', 'http://www.linkedin.com/in/jackminardi'),
-    )
-
 DEFAULT_PAGINATION = True
+
+RELATIVE_URLS = True
