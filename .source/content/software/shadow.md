@@ -164,3 +164,6 @@ Questions? Hit me up on [twitter](http://www.twitter.com/jackminardi)
 
 You can find all the code on github:
 https://github.com/jminardi/volume-from-shadow
+
+Check out the discussion on [Hacker News](https://news.ycombinator.com/item?id=6122911)
+where you can find links to similar research.
