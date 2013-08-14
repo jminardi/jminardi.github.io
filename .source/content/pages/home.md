@@ -1,6 +1,8 @@
-title: home
+title: about
 URL:
 save_as: index.html
+
+![Header images](|filename|/images/header.jpg)
 
 Hi, I'm [Jack](https://docs.google.com/document/d/1fMJCFs8jrgIQ2FnjcwwQfM3wl6l0IoYgeoey6rkKRMI/edit?usp=sharing).
 ==============
