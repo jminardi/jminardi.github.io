@@ -177,12 +177,32 @@ footer p {
     position: fixed;
     top: 33px;
     left: -27px;
+   padding: 10px;
+
+  /* HOVER OFF */
+   -webkit-transition: left .2s;
 }
 
+
+#social:hover {
+    left: 0px;
+
+  /* HOVER ON */
+   -webkit-transition: left .2s;
+}
 #social img {
     border: none;
+    width: 45px;
+   -webkit-transition: width .2s;
+}
+
+#social img:hover {
+    width: 50px;
+   -webkit-transition: width .2s;
 }
 
 #social li {
     display: block;
+   -webkit-transition: width .2s;
+   -webkit-transition: margin .2s;
 }
