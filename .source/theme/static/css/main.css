@@ -15,7 +15,7 @@ body {
   font: 20px Hoefler Text, bodyfont, serif;
   line-height: 30px;
   max-width: 30em;
-  margin: 60px 14px 0 64px;
+  margin: 60px 14px 0 80px;
 }
 
 /* line 28, ../../compass/src/main.scss */
@@ -171,4 +171,18 @@ footer li {
 /* line 135, ../../compass/src/main.scss */
 footer p {
   text-align: right;
+}
+
+#social {
+    position: fixed;
+    top: 33px;
+    left: -27px;
+}
+
+#social img {
+    border: none;
+}
+
+#social li {
+    display: block;
 }
