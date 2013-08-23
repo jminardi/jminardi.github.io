@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>jack.minardi.org : YCombinator Hardware Hackathon</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="../../theme/css/main.css" type="text/css" />
+        <link href="../../" type="application/atom+xml" rel="alternate" title="jack.minardi.org ATOM Feed" />
+        
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="../../css/ie.css"/>
+                <script src="../../js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="../../css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+
+        <footer>
+            <ul id="social">
+                <li><a href="https://github.com/jminardi"><img src="/static/images/github.png"></a></li>
+                <li><a href="http://www.twitter.com/jackminardi"><img src="/static/images/twitter.png"></a></li>
+                <li><a href="http://www.linkedin.com/in/jackminardi"><img src="/static/images/linkedin.png"></a></li>
+                <li><a href="mailto:jack@minardi.org"><img src="/static/images/mail.png"></a></li>
+            </ul>
+            <nav>
+                <ul>
+                                    <li><a href="../../">home</a> ::</li>
+                                                    <li><a href="../../raspberry_pi">raspberry_pi</a> ::</li>
+                                    <li><a href="../../software">software</a></li>
+                                </ul>
+            </nav>
+        </footer>
+
+                
+<header>
+    <h1><a href="../.." id="site-title">jack.minardi.org </a> :
+        <a href="../../raspberry_pi/ycombinator-hardware-hackathon" id="page-title">YCombinator Hardware Hackathon</a></h1>
+    <time datetime="2013-03-05T00:00:00">March 2013</time></header>
+<article>
+    <p>I recently participated in the <a href="http://upverter.com/hackathons/yc-hackathon-2013/">Upverter + YCombinator Hardware
+Hackathon</a>, where my team
+placed first overall.</p>
+<p>You can find my TechCrunch interview about the event here:
+<a href="http://techcrunch.com/2013/02/26/y-combinator-hardware-hackathon-winner/">http://techcrunch.com/2013/02/26/y-combinator-hardware-hackathon-winner/</a></p>
+<p>I went it with only an idea, and spent the first half hour trying to convince
+other people to spend their day hacking with me.</p>
+<p>The hackathon lasted about 10 hours, and the goal was to design and build a
+prototype hardware device. For our entry, my team built a wearable force
+feedback glove. When worn, the glove is able to simulate the feeling of holding
+a physical object.</p>
+<p>Here is a picture of the completed glove:</p>
+<p><img src='/static/images/hackathon/glove.jpg' width=600></p>
+<p>A device like this could be used for gaming, surgical assistance, or a number
+of other augmented reality applications. I have been interested in expanding
+the human-computer interface for a while, and this project allowed me to open
+up another channel for computers to feed back information to humans.</p>
+<h2>Mechanical Design</h2>
+<p>A length of twine is connected from the glove's fingertips, through two guiding
+braces, and back to a hobby servo. This is repeated for each finger. The servo
+is connected to a platform which is connected to the back of the glove. When
+the servo is actuated it pulls back on the twine holding the fingers open.
+Through this process we are able to simulate the resistive force of an object
+holding the wearers hand open.</p>
+<p><img src='/static/images/hackathon/diagram.jpg' width=600></p>
+<p><em>-Drawing by teammember Tom Sherlock</em></p>
+<p>For the demo at the competition, we used a distance sensor to set the hand
+position. The closer your hand was to the distance sensor, the more your
+fingers were pulled open. This simulated the feeling of squeezing a virtual
+object in your hand.</p>
+<p>The distance sensor used was a HC-SR04 Ping Sensor:</p>
+<p><img src='/static/images/hackathon/hc-sr04.jpg' width=600></p>
+<h2>Hardware I/O</h2>
+<p>To control servos and read from sensors usually you use GPIO pins. In our case
+we used the GPIO pins on a Raspberry Pi. If you would like to know more about
+hardware control with a Raspberry Pi check out my
+<a href="http://jack.minardi.org/raspberry_pi/opendevreal_world/">article</a> on that
+topic.</p>
+<p>The basic idea is that you can set the voltage on a GPIO pin high (5 volts) or
+low (0 volts). Sending the correct sequence of high and low pulses to a servo
+will cause it to go to a certain position. You can also read whether a certain
+pin is high or low. If you connect a sensor to GPIO pin, it is able to
+communicate information by sending specific sequences of high and low pulses.</p>
+<h2>Control Software</h2>
+<p>To control the GPIO pins I wrote a Python script that you can find here:
+<a href="https://gist.github.com/jminardi/5022297">https://gist.github.com/jminardi/5022297</a></p>
+<p>This script uses a library I wrote called
+<a href="https://github.com/jminardi/RobotBrain">RobotBrain</a>. It sits on top of
+<a href="https://pypi.python.org/pypi/RPi.GPIO">RPi.GPIO</a> and provides a higher level
+interface for controlling individual pins and motors. The only module used in
+this project was the Servo, which makes it easy to set a servo to a given
+position. The Servo module uses the
+<a href="https://github.com/richardghirst/PiBits/tree/master/ServoBlaster">ServoBlaster</a>
+kernal module under the covers, which exposes the servo as device in the
+filesystem.</p>
+<h2>Conclusion</h2>
+<p>In the end I had a great time at the hackathon. I think we were able to put
+together a winning demo in part because of the power of Python. With just a few
+libraries you are able to reason at a high level about what you wanted your hardware
+to do and what your sensors are seeing. If you have ever tried doing hardware
+control in a lower level language, you know just how hard that can be, and as
+you can see, how easy Python makes it.</p>
+<p><img src='/static/images/hackathon/team.jpg' width=600></p>
+</article>
+
+        <footer>
+            <nav>
+                <ul>
+                                    <li><a href="../../">home</a> ::</li>
+                                                    <li><a href="../../raspberry_pi">raspberry_pi</a> ::</li>
+                                    <li><a href="../../software">software</a></li>
+                                </ul>
+            </nav>
+            <p id="theme-credit"><a href="http://docs.getpelican.com/">Powered by Pelican</a>
+            | <a href="http://github.com/jminardi/jminardi.github.io">Source</a></p>
+            
+        </footer>
+
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-42321662-1");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>
