@@ -178,16 +178,12 @@ footer p {
     top: 33px;
     left: -27px;
    padding: 10px;
-
-  /* HOVER OFF */
    -webkit-transition: left .2s;
 }
 
 
 #social:hover {
     left: 0px;
-
-  /* HOVER ON */
    -webkit-transition: left .2s;
 }
 #social img {
