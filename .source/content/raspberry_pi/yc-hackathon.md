@@ -88,3 +88,5 @@ control in a lower level language, you know just how hard that can be, and as
 you can see, how easy Python makes it.
 
 <img src='/static/images/hackathon/team.jpg' width=600>
+
+_The team after our victory_
