@@ -50,6 +50,6 @@ Here is a closeup of the steering servo:
 It is an [HS-55](http://www.servocity.com/html/hs-55_sub-micro.html) and I
 power it directly from the pi's 5v rail. To control it I use the [servoblaster
 kernal module](https://github.com/richardghirst/PiBits) and my own servo
-control library [RobotBrain](https://github.com/richardghirst/PiBits)
+control library [RobotBrain](https://github.com/jminardi/RobotBrain)
 
 My next plans are to add some sensors and make it autonomous.
