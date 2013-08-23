@@ -19,9 +19,9 @@ free time I like to explore and develop ideas in the world of human computer
 interfaces.
 
 I recently led the winning team at the [YCombinator Hardware
-Hackathon](http://upverter.com/hackathons/yc-hackathon-2013/), where we
-designed and prototyped a novel form of human-computer interaction. You can see
-me demo the design in my [TechCrunch
+Hackathon](http://jack.minardi.org/raspberry_pi/ycombinator-hardware-hackathon/),
+where we designed and prototyped a novel form of human-computer interaction.
+You can see me demo the design in my [TechCrunch
 interview](http://techcrunch.com/2013/02/26/y-combinator-hardware-hackathon-winner/).
 [Here](https://gist.github.com/jminardi/5022297) is the script that powered the
 demo.
