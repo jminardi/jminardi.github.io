@@ -6,7 +6,6 @@ AUTHOR = u'Jack Minardi'
 SITENAME = u'jack.minardi.org'
 SITEURL = u'http://jack.minardi.org'
 
-TIMEZONE = 'CST'
 DEFAULT_LANG = u'en'
 DEFAULT_DATE_FORMAT = '%B %Y'
 
@@ -26,6 +25,7 @@ FEED_ALL_ATOM = None
 CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 FEED_ATOM = None
+FEED_ALL_RSS = 'feeds/all.rss.xml'
 
 DEFAULT_PAGINATION = True
 
