@@ -16,8 +16,7 @@
 var n = 20, // number of layers
     m = 200, // number of samples per layer
     stack = d3.layout.stack().offset("wiggle"),
-    layers0 = stack(d3.range(n).map(function() { return bumpLayer(m); })),
-    layers1 = stack(d3.range(n).map(function() { return bumpLayer(m); }));
+    layers0 = stack(d3.range(n).map(function() { return bumpLayer(m); }));
 
 var width = 600,
     height = 150;
@@ -29,7 +28,7 @@ var x = d3.scale.linear()
 var y = d3.scale.linear()
     .domain([0,
         d3.max(
-            layers0.concat(layers1),
+            layers0,
             function(layer) {
                 return d3.max(layer, function(d) { return d.y0 + d.y; }); 
             }
@@ -47,7 +46,7 @@ var area = d3.svg.area()
 var svg = d3.select("#d3header").append("svg")
     .attr("width", width)
     .attr("height", height)
-    .attr("onclick", "transition(600)");
+    .attr("onclick", "transition(600, 'cubic-in-out')")
 
 
 svg.selectAll("path")
@@ -56,13 +55,14 @@ svg.selectAll("path")
     .attr("d", area)
     .style("fill", function() { return color(Math.random()); });
 
-function transition(dur) {
+function transition(dur, ease) {
   d3.selectAll("path")
       .data(function() {
         var d = stack(d3.range(n).map(function() { return bumpLayer(m); }));
         return layers0 = d;
       })
     .transition()
+      .ease(ease)
       .duration(dur)
       .attr("d", area);
 }
@@ -87,10 +87,10 @@ function bumpLayer(n) {
 }
 
 
-transition(30000);
+transition(20000, 'linear');
 setInterval(function() {
-    transition(30000);
- }, 27000);
+    transition(22000, 'linear');
+ }, 22000);
 
 
 </script>
