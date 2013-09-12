@@ -53,7 +53,7 @@ BitTorrent Sync:
     :::bash
     mkdir ~/.btsync && cd ~/.btsync
     wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_arm.tar.gz
-    tar -xfv btsync_arm.tar.gz
+    tar -xvf btsync_arm.tar.gz
 
 Unless you have a large SD in your Pi you will probably want to use an external
 drive for your sync location. I will be using a USB thumb drive. You may need

@@ -175,7 +175,7 @@ build&lt;/a&gt; of
 BitTorrent Sync:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;mkdir ~/.btsync &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; ~/.btsync
 wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_arm.tar.gz
-tar -xfv btsync_arm.tar.gz
+tar -xvf btsync_arm.tar.gz
 &lt;/pre&gt;&lt;/div&gt;
 
 
