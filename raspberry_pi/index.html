@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <title>jack.minardi.org - raspberry_pi</title>
+        <title>raspberry_pi</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="../theme/css/main.css" type="text/css" />
         <link href="../" type="application/atom+xml" rel="alternate" title="jack.minardi.org ATOM Feed" />
@@ -22,197 +22,108 @@
 
         <footer>
             <ul id="social">
-                <li><a href="https://github.com/jminardi"><img src="/static/images/github.png"></a></li>
-                <li><a href="http://www.twitter.com/jackminardi"><img src="/static/images/twitter.png"></a></li>
+                <li><a href="https://github.com/jminardi"><img src="../static/images/github.png"></a></li>
+                <li><a href="http://www.twitter.com/jackminardi"><img src="../static/images/twitter.png"></a></li>
                 <li><a href="http://www.linkedin.com/in/jackminardi"><img src="/static/images/linkedin.png"></a></li>
-                <li><a href="mailto:jack@minardi.org"><img src="/static/images/mail.png"></a></li>
+                <li><a href="mailto:jack@minardi.org"><img src="../static/images/mail.png"></a></li>
+                <li><a href="../feeds/all.rss.xml"><img src="../static/images/rss.png"></a></li>
             </ul>
             <nav>
                 <ul>
-                                    <li><a href="../">home</a> ::</li>
-                                                    <li><a href="../raspberry_pi">raspberry_pi</a> ::</li>
+                                                            <li><a href="../">home</a> ::</li>
+                                                                                                                                                <li><a href="../raspberry_pi">raspberry_pi</a> ::</li>
                                     <li><a href="../software">software</a></li>
                                 </ul>
             </nav>
         </footer>
 
                 
-            
-
-                            <header>
-                <h1><a href=".." id="site-title">jack.minardi.org </a> : <a href="../raspberry_pi/replace-dropbox-with-bittorrent-sync-and-a-raspberry-pi" id="page-title">Replace Dropbox with BitTorrent Sync and a Raspberry Pi</a></h1>
-                <time datetime="2013-07-20T00:00:00">July 2013</time>            </header>
-
-            <article>
-                <h2>Notes Everywhere</h2>
-<p><img alt="Messy Desk" src="../static/images/messy-desk.png" />
-<a href="http://www.flickr.com/photos/jazzmasterson/278672002/">source</a></p>
-<p>I like to take long running notes, jotting down an idea here and there when
-one pops up. I never know which devices I will have with me, so I like to have
-these notes synced across all of them.</p>
-<p>Previously I had been using the Chrome plugin
-<a href="https://chrome.google.com/webstore/detail/quick-note/mijlebbfndhelmdpmllgcfadlkankhok?hl=en-US">QuickNote</a>
-which is a light weight interface on top of the <a href="http://www.diigo.com">diigo</a>
-cloud service. I had been using it for about two years and never had a problem
-until a few days ago. I somehow managed to lose about three months of edits. I
-still have not quite shaken that feeling of despair knowing I will never get my
-data back, but it did finally force me to beef up my note-syncing system.
-While I will primarily be using this setup to sync notes, it is by no means
-limited to only text files.</p>
-<h2>Enter BitTorrent Sync</h2>
-<p><a href="http://labs.bittorrent.com/experiments/sync.html">BitTorrent Sync</a> is a free
-utility that uses the bittorrent protocol to keep folders in sync across
-devices. It can be used with OS X, Windows, Android and Linux. It is not
-however open source, which might be a deal breaker for some.  But if this 
-isn't too big a pill for you to swallow, with a little bit of work you can use
-btsync as a free syncing solution.</p>
-<p>While Dropbox requires you to keep a copy of your data on their servers, 
-btsync never requires your data to inhabit a device you do not own.
-This is nice for security, but it means to sync between two devices they both
-need to be online at the same time. That is where the Raspberry Pi comes in.
-You can use the Pi as a node in your sync network, so a change to a file on any
-device will sync with the Pi and then other devices will get the change when
-they come online.</p>
-<p>First we will set up the Pi as the central server and then we will connect our
-devices to it. (It is important to note however that the Pi is not a special
-"server" node, it is just a regular node like any other device.)</p>
-<h2>Installing BitTorrent Sync on the Raspberry Pi</h2>
-<p>NOTE: I am using Raspbian Wheezy, but I suspect these ideas will translate to
-other operating systems.</p>
-<p>You need to grab the <a href="http://btsync.s3-website-us-east-1.amazonaws.com/btsync_arm.tar.gz">ARM
-build</a> of
-BitTorrent Sync:</p>
-<div class="highlight"><pre>mkdir ~/.btsync <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/.btsync
-wget http://btsync.s3-website-us-east-1.amazonaws.com/btsync_arm.tar.gz
-tar -xvf btsync_arm.tar.gz
-</pre></div>
 
 
-<p>Unless you have a large SD in your Pi you will probably want to use an external
-drive for your sync location. I will be using a USB thumb drive. You may need
-to format your thumb drive as EXT4 if you are having issues. (<em>WARNING! This
-will erase all data on your drive</em>)</p>
-<div class="highlight"><pre>df -h                               <span class="c"># find your drive here, e.g. `sda1`</span>
-sudo umount /dev/sda1               <span class="c"># replace sda1 with your drive name !</span>
-sudo mkfs.ext4 /dev/sda1 -L BTSync  <span class="c"># replace sda1 with your drive name !</span>
-</pre></div>
+<header>
+    <h1>
+        <a href=".." id="site-title">
+            jack.minardi.org
+                    </a> :
+        <a href="../raspberry_pi" id="page-title">
+            raspberry_pi
+        </a>
+    </h1>
+</header>
 
 
-<p>Now all you have to do is launch the btsync application and you will be up and
-running!</p>
-<div class="highlight"><pre><span class="nb">cd</span> ~/.btsync
-sudo ./btsync  <span class="c"># can be killed with `sudo killall btsync`</span>
-</pre></div>
+<article>    
+    <p>The Raspberry Pi is a cheap, credit-card sized computer. It runs a full linux
+operating system, so you can program in most any language that feels
+comfortable to you.</p>
+<p>The Pi was built as a teaching tool, intended to get young people into programming
+by giving them a device that could truly be theirs. You can find more about
+the philosophy of the Raspberry Pi on the <a href="http://www.raspberrypi.org/about">Raspberry Pi Foundation's Website</a></p>
+<p>But what I think makes the Raspberry Pi special is its ability to interact with
+the real world. The Pi comes built with GPIO pins, which allow you to
+programmatically control exterior devices like a servo motor or an LED. Check
+out my page on <a href="http://localhost:8000/raspberry_pi/opendevreal_world/">Raspberry Pi Hardware Control</a> to find more examples of
+this.</p>
+<h3>Read some more of my articles about the Raspberry Pi:</h3>
+</article>
 
 
-<p>If you see the following output btsync is properly running.</p>
-<div class="highlight"><pre>BitTorrent Sync forked to background. <span class="nv">pid</span> <span class="o">=</span> 3003
-</pre></div>
+<section id="article-list">
+    <ol>
 
-
-<p>Navigate your browser to <code>Your-Pi-IP-Address:8888/gui</code> to manage the btsync
-process. To add the thumb drive select "Add Folder" and navigate to
-<code>/media/BTSync</code>. You will need to generate a secret as this is the first time
-you are adding the folder.</p>
-<p><img src='/static/images/btsync-web-interface.png' id='borderless'></p>
-<p><img alt="Add Folfer" src="../static/images/add-folder.png" /></p>
-<h2>Other Devices</h2>
-<p>Now go download the
-<a href="https://play.google.com/store/apps/details?id=com.bittorrent.sync">Android app</a>
-and/or the <a href="http://labs.bittorrent.com/experiments/sync.html">desktop app</a> and
-connect them using the secret you just generated It's that simple! Any change
-on any device will be synced across all online devices. If you keep your Pi
-online it will store and push the most up to date content as your other devices
-go on and off line.</p>
-<h2>Extra Credit</h2>
-<h3>Start at Boot</h3>
-<p>You may want to set btsync to start when you boot your Raspberry Pi. To do that
-we will place a script in <code>/etc/init.d/</code> and then register it with
-<code>update-rc.d</code>.</p>
-<div class="highlight"><pre>sudo nano /etc/init.d/btsync
-</pre></div>
-
-
-<p>Paste the following code in the script</p>
-<div class="highlight"><pre><span class="c">#! /bin/sh</span>
-<span class="c"># /etc/init.d/btsync</span>
-<span class="c">#</span>
-
-<span class="c"># Carry out specific functions when asked to by the system</span>
-<span class="k">case</span> <span class="s2">&quot;$1&quot;</span> in
-start<span class="o">)</span>
-    /home/pi/.btsync/btsync
-    ;;
-stop<span class="o">)</span>
-    killall btsync
-    ;;
-*<span class="o">)</span>
-    <span class="nb">echo</span> <span class="s2">&quot;Usage: /etc/init.d/btsync {start|stop}&quot;</span>
-    <span class="nb">exit </span>1
-    ;;
-<span class="k">esac</span>
-
-<span class="nb">exit </span>0
-</pre></div>
-
-
-<p>Then change the permissions, test, and register it to run at boot:</p>
-<div class="highlight"><pre>sudo chmod 755 /etc/init.d/btsync
-sudo /etc/init.d/btsync start       <span class="c"># test that the script starts</span>
-sudo /etc/init.d/btsync stop        <span class="c"># test that the script stops</span>
-sudo update-rc.d btsync defaults
-</pre></div>
-
-
-<h3>Password Protect Web Interface</h3>
-<p>If you expose your web interface to the outside world (or if you don't trust
-your friends) you are going to want to password protect it.  This can be done
-with a btsync config file passed to the executable at runtime with the
-<code>--config</code> flag. First, use btsync to generate a sample config file, modify it
-to fit your needs, and restart the process.</p>
-<div class="highlight"><pre><span class="nb">cd</span> ~/.btsync
-./btsync --dump-sample-config &gt; btsync.conf
-<span class="c"># browse the sample config file and change what you want</span>
-sudo killall btsync
-sudo ./btsync --config btsync.conf
-</pre></div>
-
-
-<p>HINT: Use <a href="http://jsonlint.com/">jsonlint</a> to validate your config file if
-btsync complains. Also make sure to modify the <code>/etc/init.d/btsync</code> script to
-use the config file as well.</p>
-<p>Questions? Hit me up on twitter
-<a href="http://www.twitter.com/jackminardi">@jackminardi</a></p>
-<p>You can also follow the
-<a href="https://news.ycombinator.com/item?id=6071604">discussion on HN</a></p>            </article>
-                            <section id="article-list">
-                    <h2>All posts</h2>
-                    <ol>
-                                    
-
-                 
-            <li><a href="../raspberry_pi/opendevreal_world" rel="bookmark" title="Permalink to open('/dev/real_world')">open('/dev/real_world')</a></li>
                 
 
-                 
-            <li><a href="../raspberry_pi/ycombinator-hardware-hackathon" rel="bookmark" title="Permalink to YCombinator Hardware Hackathon">YCombinator Hardware Hackathon</a></li>
+            <li>
+                            </li>
+
                 
 
-                 
-            <li><a href="../raspberry_pi/android-controlled-toy-car" rel="bookmark" title="Permalink to Android Controlled Toy Car">Android Controlled Toy Car</a></li>
-                </ol>
-    </section><!-- #article-list -->
+            <li>
+                                    <a href="../raspberry_pi/replace-dropbox-with-bittorrent-sync-and-a-raspberry-pi" rel="bookmark" >
+                        Replace Dropbox with BitTorrent Sync and a Raspberry Pi
+                    </a>
+                            </li>
+
+                
+
+            <li>
+                                    <a href="../raspberry_pi/opendevreal_world" rel="bookmark" >
+                        open('/dev/real_world')
+                    </a>
+                            </li>
+
+                
+
+            <li>
+                                    <a href="../raspberry_pi/ycombinator-hardware-hackathon" rel="bookmark" >
+                        YCombinator Hardware Hackathon
+                    </a>
+                            </li>
+
+                
+
+            <li>
+                                    <a href="../raspberry_pi/android-controlled-toy-car" rel="bookmark" >
+                        Android Controlled Toy Car
+                    </a>
+                            </li>
+
+        
+    </ol>
+</section>
+
+
 
         <footer>
             <nav>
                 <ul>
-                                    <li><a href="../">home</a> ::</li>
-                                                    <li><a href="../raspberry_pi">raspberry_pi</a> ::</li>
+                                                            <li><a href="../">home</a> ::</li>
+                                                                                                                                                <li><a href="../raspberry_pi">raspberry_pi</a> ::</li>
                                     <li><a href="../software">software</a></li>
                                 </ul>
             </nav>
             <p id="theme-credit"><a href="http://docs.getpelican.com/">Powered by Pelican</a>
-            | <a href="http://github.com/jminardi/jminardi.github.io">Source</a></p>
+            | <a href="http://github.com/jminardi/jminardi.github.io">Hosted on Github</a></p>
             
         </footer>
 

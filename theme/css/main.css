@@ -139,10 +139,6 @@ header a#page-title {
   font-weight: bold;
 }
 
-/* line 112, ../../compass/src/main.scss */
-#article-list {
-  margin-top: 100px;
-}
 /* line 114, ../../compass/src/main.scss */
 #article-list ol li {
   line-height: 1.2em;
@@ -159,10 +155,14 @@ footer {
   letter-spacing: 4px;
   margin-left: -40px;
 }
+
+#theme-credit a {
+    color: #bbb;
+}
 /* line 128, ../../compass/src/main.scss */
 footer a {
   border-bottom: none;
-  color: #bbb;
+  color: #444;
 }
 /* line 132, ../../compass/src/main.scss */
 footer li {

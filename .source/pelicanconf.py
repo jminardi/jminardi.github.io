@@ -27,6 +27,4 @@ TRANSLATION_FEED_ATOM = None
 FEED_ATOM = None
 FEED_ALL_RSS = 'feeds/all.rss.xml'
 
-DEFAULT_PAGINATION = True
-
 RELATIVE_URLS = True

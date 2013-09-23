@@ -26,15 +26,18 @@
 
         <footer>
             <ul id="social">
-                <li><a href="https://github.com/jminardi"><img src="{{ SITURL }}/static/images/github.png"></a></li>
-                <li><a href="http://www.twitter.com/jackminardi"><img src="{{ SITURL }}/static/images/twitter.png"></a></li>
-                <li><a href="http://www.linkedin.com/in/jackminardi"><img src="{{ SITURL }}/static/images/linkedin.png"></a></li>
-                <li><a href="mailto:jack@minardi.org"><img src="{{ SITURL }}/static/images/mail.png"></a></li>
+                <li><a href="https://github.com/jminardi"><img src="{{ SITEURL }}/static/images/github.png"></a></li>
+                <li><a href="http://www.twitter.com/jackminardi"><img src="{{ SITEURL }}/static/images/twitter.png"></a></li>
+                <li><a href="http://www.linkedin.com/in/jackminardi"><img src="{{ SIEURL }}/static/images/linkedin.png"></a></li>
+                <li><a href="mailto:jack@minardi.org"><img src="{{ SITEURL }}/static/images/mail.png"></a></li>
+                <li><a href="{{ SITEURL }}/feeds/all.rss.xml"><img src="{{ SITEURL }}/static/images/rss.png"></a></li>
             </ul>
             <nav>
                 <ul>
                 {% for page in PAGES %}
-                    <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a> ::</li>
+                    {% if not page.ignore_in_nav %}
+                        <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a> ::</li>
+                    {% endif %}
                 {% endfor %}
                 {% for cat, null in categories %}
                     <li><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a>{% if not loop.last %} ::{% endif %}</li>
@@ -50,7 +53,9 @@
             <nav>
                 <ul>
                 {% for page in PAGES %}
-                    <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a> ::</li>
+                    {% if not page.ignore_in_nav %}
+                        <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a> ::</li>
+                    {% endif %}
                 {% endfor %}
                 {% for cat, null in categories %}
                     <li><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a>{% if not loop.last %} ::{% endif %}</li>
@@ -58,7 +63,7 @@
                 </ul>
             </nav>
             <p id="theme-credit"><a href="http://docs.getpelican.com/">Powered by Pelican</a>
-            | <a href="http://github.com/jminardi/jminardi.github.io">Source</a></p>
+            | <a href="http://github.com/jminardi/jminardi.github.io">Hosted on Github</a></p>
             
         </footer>
 

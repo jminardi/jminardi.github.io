@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }}{% endblock %}
+{% block content %}        
+
+
+<header>
+    <h1>
+        <a href="{{ SITEURL }}" id="site-title">
+            {{ SITENAME }}
+            {% if SITESUBTITLE %}
+                <strong>{{ SITESUBTITLE }}</strong>
+            {% endif %}
+        </a> :
+        <a href="{{ SITEURL }}/{{ page.url }}" id="page-title">
+            {{ page.title }}
+        </a>
+    </h1>
+</header>
+
+
+<article>    
+    {{ page.content }}
+</article>
+
+
+<section id="article-list">
+    <ol>
+
+        {% for article in articles %}        
+
+            <li>
+                {% if article.category == page.title %}
+                    <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" >
+                        {{ article.title }}
+                    </a>
+                {% endif %}
+            </li>
+
+        {% endfor %}
+
+    </ol>
+</section>
+
+
+{% endblock %}
