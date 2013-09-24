@@ -28,3 +28,5 @@ FEED_ATOM = None
 FEED_ALL_RSS = 'feeds/all.rss.xml'
 
 RELATIVE_URLS = True
+
+STATIC_PATHS = ['images', 'files']

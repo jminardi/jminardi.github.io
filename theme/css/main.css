@@ -13,9 +13,9 @@ body {
   background: #fff;
   color: #333;
   font: 20px Hoefler Text, bodyfont, serif;
-  line-height: 30px;
+  line-height: 25px;
   max-width: 30em;
-  margin: 60px 14px 0 80px;
+  margin: 40px 14px 0 80px;
 }
 
 /* line 28, ../../compass/src/main.scss */
@@ -72,8 +72,8 @@ blockquote {
 
 /* line 61, ../../compass/src/main.scss */
 p {
-  line-height: 30px;
-  margin: 30px auto;
+  line-height: 25px;
+  margin: 20px auto;
   text-indent: 0px;
 }
 /* line 65, ../../compass/src/main.scss */
