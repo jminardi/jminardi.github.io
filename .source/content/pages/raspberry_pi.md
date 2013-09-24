@@ -17,7 +17,6 @@ But what I think makes the Raspberry Pi special is its ability to interact with
 the real world. The Pi comes built with GPIO pins, which allow you to
 programmatically control exterior devices like a servo motor or an LED. Check
 out my page on [Raspberry Pi Hardware Control](
-http://localhost:8000/raspberry_pi/opendevreal_world/) to find more examples of
-this.
+raspberry_pi/opendevreal_world/) to find more examples of this.
 
 ### Read some more of my articles about the Raspberry Pi:
