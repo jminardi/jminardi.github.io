@@ -85,7 +85,7 @@ p.caption {
 /* line 71, ../../compass/src/main.scss */
 a {
   border-bottom: #999 1px solid;
-  color: #303030;
+  color: #804141;
   text-decoration: none;
 }
 
@@ -129,10 +129,12 @@ pre {
 /* line 104, ../../compass/src/main.scss */
 header {
   padding-bottom: 20px;
+  line-height: 1.5em;
 }
 /* line 106, ../../compass/src/main.scss */
 header a {
   border-bottom: none;
+  color: #303030;
 }
 /* line 108, ../../compass/src/main.scss */
 header a#page-title {
