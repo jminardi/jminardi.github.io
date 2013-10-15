@@ -155,6 +155,8 @@ to display the users downsampled avatar on the display. It will be cool to see
 just how much detail a viewer can discern on a 8x16 display. Stay tuned for
 updates in that area!
 
+Question? Reach out to me on [twitter](https://www.twitter.com/jackminardi)
+
 ## Appendix
 
 ### Connections
