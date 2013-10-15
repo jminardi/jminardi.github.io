@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>jack.minardi.org : Displaying Realtime Github Activity on a Full Color LED Matrix</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="../../theme/css/main.css" type="text/css" />
+        <link href="../../" type="application/atom+xml" rel="alternate" title="jack.minardi.org ATOM Feed" />
+        
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="../../css/ie.css"/>
+                <script src="../../js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="../../css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+
+        <footer>
+            <ul id="social">
+                <li><a href="https://github.com/jminardi"><img src="../../static/images/github.png"></a></li>
+                <li><a href="http://www.twitter.com/jackminardi"><img src="../../static/images/twitter.png"></a></li>
+                <li><a href="http://www.linkedin.com/in/jackminardi"><img src="/static/images/linkedin.png"></a></li>
+                <li><a href="mailto:jack@minardi.org"><img src="../../static/images/mail.png"></a></li>
+                <li><a href="../../feeds/all.rss.xml"><img src="../../static/images/rss.png"></a></li>
+            </ul>
+            <nav>
+                <ul>
+                                                            <li><a href="../../">home</a> ::</li>
+                                                                                                                                                                                            <li><a href="../../talks">talks</a> ::</li>
+                                                                        <li><a href="../../projects">projects</a> ::</li>
+                                    <li><a href="../../raspberry_pi">raspberry_pi</a> ::</li>
+                                    <li><a href="../../software">software</a></li>
+                                </ul>
+            </nav>
+        </footer>
+
+                
+<header>
+    <h1><a href="../.." id="site-title">jack.minardi.org </a> :
+        <a href="../../projects/displaying-realtime-github-activity-on-a-full-color-led-matrix" id="page-title">Displaying Realtime Github Activity on a Full Color LED Matrix</a></h1>
+    <time datetime="2013-10-13T00:00:00">October 2013</time></header>
+<article>
+    <h2>Overview</h2>
+<p><img alt="LED Matrix" src="../../static/images/project-banners/gh-display.png" /></p>
+<p>The goal of this project was to display real time activity from my companies
+Github feed. I used an RGB LED matrix to display information about the last 30
+events, including the username of whoever is responsible for the most recent
+event.</p>
+<p>Here is a video of the display operating.</p>
+<iframe width="600" height="450" src="//www.youtube.com/embed/zrsNJpTwHrw" frameborder="0" allowfullscreen></iframe>
+
+<p>This project uses the following hardware:</p>
+<ul>
+<li>Arduino</li>
+<li><a href="https://www.sparkfun.com/products/11395">Electric Imp</a> and <a href="https://www.sparkfun.com/products/11400">Breakout Board</a></li>
+<li><a href="http://www.seeedstudio.com/depot/tim-p-1516.html">TiM Board</a> (8x16 RGB LED Display)</li>
+<li>4.5 V power supply.</li>
+<li>A few jumper cables</li>
+</ul>
+<p>You can find all the software on
+<a href="https://github.com/jminardi/github-events-display">Github</a> or at the end of
+this article.</p>
+<h2>Free Hardware!</h2>
+<p>I met Justin Shaw at SciPy 2013, where we talked about software development and
+open hardware hacking. He told me about his company <a href="http://wyolum.com/">Wyolum</a> that focuses on
+open source hardware. He explained that they have a <a href="https://plus.google.com/communities/101981201962256466651">Google+ Page</a> where
+they routinely give away hardware to people who promise to do cool things with
+it.</p>
+<p>I joined immediately and the first hardware giveaway was a full color 8x16
+smart LED matrix known as <a href="http://www.seeedstudio.com/depot/tim-p-1516.html">The intelligent Matrix (TiM board)</a>. I applied
+with the idea of building a real time Github activity display for the breakroom
+at my office. My idea was selected and Wyolum sent me a TiM board. (In fact,
+everyone who entered with an idea was sent one -- You should join now!)</p>
+<h2>The intelligent Matrix</h2>
+<p>The TiM board is made made up of 128 "Smart Pixels", which are full
+color RGB LEDs. Each LED has its own control circuit, making it easy to
+control many LEDs with a single GPIO pin. The specific type of smart pixels used
+in the TiM board are 5050-WS2811. You can find more details about the board in
+the <a href="https://docs.google.com/a/minardi.org/document/d/1szTSpMLkoYj53_0VNPQfEkWC-Doyp6mj_TT7GCWduIA/edit">User Guide</a></p>
+<p>I decided to operate my board in serial mode, so I soldered the pads on the
+back. I also soldered a couple of header pins to make it easier for me to
+connect power and signal to the board. See below for photos of the soldered 
+pads and header pins:</p>
+<p><a href='/static/images/gh-display/shorted-pads.jpg', id='borderless'>
+<img src='/static/images/gh-display/shorted-pads.jpg' id='borderless' width=400>
+</a></p>
+<p><em>Connecting these pads lets me operate the TiM board in "serial mode".</em></p>
+<p><a href='/static/images/gh-display/header-pins.jpg', id='borderless'>
+<img src='/static/images/gh-display/header-pins.jpg' id='borderless' width=400>
+</a></p>
+<p><em>I soldered on some header pins to make connections easier.</em></p>
+<h2>The Internet of Things with an Electric Imp</h2>
+<p>I needed some method to collect data about github events. Luckily for me,
+Github makes it incredibly easy to get activity information using their
+<a href="http://developer.github.com/">API</a>. All I had to do was generate an access token for my account and I was
+able to easily request the latest organization events using this URL:</p>
+<div class="highlight"><pre><span class="nx">https</span><span class="p">:</span><span class="c1">//api.github.com/orgs/enthought/events?access_token=&lt;mytoken&gt;</span>
+</pre></div>
+
+
+<p>Since I built this project with an Arduino, I needed some way to access the 
+Internet easily. There are a couple of methods for connecting an Arduino to the
+Internet, and in the end I choose to use an <a href="http://electricimp.com/">Electric Imp</a> and breakout
+board. (I choose this because the company was giving them away at the
+<a href="http://jack.minardi.org/raspberry_pi/ycombinator-hardware-hackathon/">YCombinator Hardware Hackathon</a>, so I just had one lying around.)</p>
+<p>The Electric Imp breakout board I have has to be programmed in a language
+called <a href="http://www.squirrel-lang.org/doc/squirrel3.html">Squirrel</a>, which is a C like language designed for embedded
+platforms. Programming with the Imp involves writing code for two platforms:
+The "Agent" which is some machine in the cloud, and the "Imp" which is the
+actual hardware on my desk. The Imp sends a message to the agent, which hits
+the Github API and returns the desired data.</p>
+<h2>Simplifying Display Logic with Adafruit's NeoMatrix Library</h2>
+<p>On the Arduino side of things I decided to use Adafruit's <a href="http://learn.adafruit.com/adafruit-neopixel-uberguide/neomatrix-library">NeoMatrix</a>
+library to drive the LED display. While the TiM board I am using is not an
+Adafruit product, I was still able to make use of their open source software
+libraries. Yay for open source!</p>
+<h2>Data Flow</h2>
+<p>I wanted to centralize all my processing to the Arduino, and treat the Imp like
+a dumb component. However due to memory constraints on the Arduino I had to
+offload some of the computation to the Imp. The general dataflow I implemented
+is:</p>
+<ol>
+<li>
+<p>Arduino sends a load request ("l") to the Imp over serial.</p>
+</li>
+<li>
+<p>The Imp receives this request and sends a message to the "Agent" to request
+ the Github data</p>
+</li>
+<li>
+<p>The agent receives this request, loads the data, and sends it as a response.</p>
+</li>
+<li>
+<p>The Imp receives the Github data and stores it.</p>
+</li>
+<li>
+<p>Arduino sends a next chunk request ("c") over serial. Chunk size is 60 bytes.</p>
+</li>
+<li>
+<p>Imp receives this chunk request and sends the next chunk of Github data
+ over serial.</p>
+</li>
+<li>
+<p>Arduino keeps requesting the next chunk of data until the end of message
+ character ("$") arrives.</p>
+</li>
+<li>
+<p>Once the whole message has been transmitted, the Arduino processes it and
+ outputs to the LED display.</p>
+</li>
+<li>
+<p>Rinse and repeat.</p>
+</li>
+</ol>
+<h2>Parting Thoughts</h2>
+<p>I am by no means an expert programmer on the Arduino or Electric Imp. The code
+I ended up with works, but I make no promises that it is the best way to do
+things.</p>
+<p>While I was able to build what I set out to build, I can't help but feel that
+I'm not using this brilliant color LED matrix to its full potential. At any
+given time I am only displaying ~10 different colors, while the board is
+capable of displaying 2^24 different colors per pixel! I think my next step is
+to display the users downsampled avatar on the display. It will be cool to see
+just how much detail a viewer can discern on a 8x16 display. Stay tuned for
+updates in that area!</p>
+<h2>Appendix</h2>
+<h3>Connections</h3>
+<p>I should probably do a proper diagram, but for know I will simply list the
+connections needed for the software to work:</p>
+<ul>
+<li>Arduino 5V -&gt; Imp VIN</li>
+<li>Arduino Gnd -&gt; Imp GND</li>
+<li>Arduino Pin 9 -&gt; Imp Pin5</li>
+<li>Arduino Pin 10 -&gt; Imp Pin7</li>
+<li>Arduino Pin 6 -&gt; TiM Serial Data In</li>
+<li>Power Supply 5V and Ground -&gt; TiM Power Pins</li>
+</ul>
+<h3>Code</h3>
+<p>If you'd rather git pull than copy/paste go
+<a href="https://github.com/jminardi/github-events-display">here</a>.</p>
+<h4>Arduino</h4>
+<div class="highlight"><pre><span class="cp">#include &lt;SoftwareSerial.h&gt;</span>
+<span class="cp">#include &lt;Adafruit_GFX.h&gt;</span>
+<span class="cp">#include &lt;Adafruit_NeoMatrix.h&gt;</span>
+<span class="cp">#include &lt;Adafruit_NeoPixel.h&gt;</span>
+
+<span class="cp">#define PIN 6</span>
+<span class="cp">#define WIDTH 16</span>
+<span class="cp">#define HEIGHT 8</span>
+
+<span class="c1">// Parameter 1 = number of pixels in strip</span>
+<span class="c1">// Parameter 2 = pin number (most are valid)</span>
+<span class="c1">// Parameter 3 = pixel type flags, add together as needed:</span>
+<span class="c1">//   NEO_KHZ800  800 KHz bitstream (most NeoPixel products w/WS2812 LEDs)</span>
+<span class="c1">//   NEO_KHZ400  400 KHz (classic &#39;v1&#39; (not v2) FLORA pixels, WS2811 drivers)</span>
+<span class="c1">//   NEO_GRB     Pixels are wired for GRB bitstream (most NeoPixel products)</span>
+<span class="c1">//   NEO_RGB     Pixels are wired for RGB bitstream (v1 FLORA pixels, not v2)</span>
+
+<span class="n">Adafruit_NeoMatrix</span> <span class="n">matrix</span> <span class="o">=</span> <span class="n">Adafruit_NeoMatrix</span><span class="p">(</span><span class="n">WIDTH</span><span class="p">,</span> <span class="n">HEIGHT</span><span class="p">,</span> <span class="n">PIN</span><span class="p">,</span>
+  <span class="n">NEO_MATRIX_TOP</span>     <span class="o">+</span> <span class="n">NEO_MATRIX_RIGHT</span> <span class="o">+</span>
+  <span class="n">NEO_MATRIX_ROWS</span>    <span class="o">+</span> <span class="n">NEO_MATRIX_PROGRESSIVE</span><span class="p">,</span>
+  <span class="n">NEO_GRB</span>            <span class="o">+</span> <span class="n">NEO_KHZ800</span><span class="p">);</span>
+
+<span class="c1">//defining the Pins for TX and RX serial communication</span>
+<span class="n">SoftwareSerial</span> <span class="n">electricimpSerial</span> <span class="o">=</span> <span class="n">SoftwareSerial</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+
+<span class="kt">char</span> <span class="n">character</span><span class="p">;</span>
+<span class="n">String</span> <span class="n">content</span><span class="p">;</span>
+
+<span class="kt">char</span> <span class="n">eventSeparator</span> <span class="o">=</span> <span class="sc">&#39;,&#39;</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">itemSeparator</span> <span class="o">=</span> <span class="sc">&#39;.&#39;</span><span class="p">;</span>
+<span class="n">String</span> <span class="n">lastActor</span><span class="p">;</span>
+<span class="n">String</span> <span class="n">first</span> <span class="o">=</span> <span class="s">&quot;^&quot;</span><span class="p">;</span>
+<span class="n">String</span> <span class="n">last</span> <span class="o">=</span> <span class="s">&quot;$&quot;</span><span class="p">;</span> 
+
+<span class="n">byte</span> <span class="n">ghEvents</span><span class="p">[</span><span class="mi">30</span><span class="p">];</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+    <span class="n">electricimpSerial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span>
+
+    <span class="n">electricimpSerial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;l&quot;</span><span class="p">);</span>  <span class="c1">//load giithub data</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+    <span class="n">electricimpSerial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">);</span>  <span class="c1">//prepare first chunk</span>
+
+    <span class="n">matrix</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+    <span class="n">matrix</span><span class="p">.</span><span class="n">setTextWrap</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+    <span class="n">matrix</span><span class="p">.</span><span class="n">setBrightness</span><span class="p">(</span><span class="mi">255</span><span class="p">);</span>
+ <span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">while</span><span class="p">(</span><span class="n">electricimpSerial</span><span class="p">.</span><span class="n">available</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+     <span class="n">character</span> <span class="o">=</span> <span class="n">electricimpSerial</span><span class="p">.</span><span class="n">read</span><span class="p">();</span>
+     <span class="n">content</span> <span class="o">+=</span> <span class="n">character</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">character</span> <span class="o">==</span> <span class="sc">&#39;$&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">electricimpSerial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;l&quot;</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+    <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">content</span><span class="p">);</span>
+    <span class="n">processContent</span><span class="p">();</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">electricimpSerial</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="s">&quot;c&quot;</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+ <span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">processContent</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">content</span><span class="p">.</span><span class="n">startsWith</span><span class="p">(</span><span class="n">first</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="n">content</span><span class="p">.</span><span class="n">endsWith</span><span class="p">(</span><span class="n">last</span><span class="p">))</span>
+    <span class="k">return</span><span class="p">;</span>  <span class="c1">// bail if content string is invalid</span>
+
+  <span class="kt">int</span> <span class="n">start_idx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">end_idx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">loop_idx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">end_idx</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">loop_idx</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">String</span> <span class="n">sub</span> <span class="o">=</span> <span class="n">content</span><span class="p">.</span><span class="n">substring</span><span class="p">(</span><span class="n">start_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">end_idx</span><span class="p">);</span>      
+      <span class="kt">int</span> <span class="n">item_break</span> <span class="o">=</span> <span class="n">sub</span><span class="p">.</span><span class="n">indexOf</span><span class="p">(</span><span class="n">itemSeparator</span><span class="p">);</span>
+      <span class="n">String</span> <span class="n">actor</span> <span class="o">=</span> <span class="n">sub</span><span class="p">.</span><span class="n">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">item_break</span><span class="p">);</span>
+      <span class="n">String</span> <span class="n">event</span> <span class="o">=</span> <span class="n">sub</span><span class="p">.</span><span class="n">substring</span><span class="p">(</span><span class="n">item_break</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+      <span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="n">actor</span> <span class="o">+</span> <span class="s">&quot;***&quot;</span> <span class="o">+</span> <span class="n">event</span><span class="p">);</span>
+
+      <span class="n">byte</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">loop_idx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="n">WIDTH</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+      <span class="n">byte</span> <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">loop_idx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">WIDTH</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="n">loop_idx</span><span class="o">-</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">ghEvents</span><span class="p">))</span>
+        <span class="n">ghEvents</span><span class="p">[</span><span class="n">loop_idx</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">byte</span><span class="p">)</span><span class="n">event</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">loop_idx</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">lastActor</span> <span class="o">=</span> <span class="n">actor</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">start_idx</span> <span class="o">=</span> <span class="n">end_idx</span><span class="p">;</span>
+    <span class="n">end_idx</span> <span class="o">=</span> <span class="n">content</span><span class="p">.</span><span class="n">indexOf</span><span class="p">(</span><span class="n">eventSeparator</span><span class="p">,</span> <span class="n">end_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">loop_idx</span><span class="o">++</span><span class="p">;</span>
+
+  <span class="p">}</span>
+
+  <span class="n">drawText</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">drawText</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">drawData</span><span class="p">();</span>  
+    <span class="n">matrix</span><span class="p">.</span><span class="n">setCursor</span><span class="p">(</span><span class="n">WIDTH</span><span class="o">-</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">matrix</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="n">lastActor</span><span class="p">);</span>
+    <span class="n">matrix</span><span class="p">.</span><span class="n">setTextColor</span><span class="p">(</span><span class="n">matrix</span><span class="p">.</span><span class="n">Color</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">));</span>
+    <span class="n">matrix</span><span class="p">.</span><span class="n">show</span><span class="p">();</span>
+    <span class="n">delay</span><span class="p">(</span><span class="mi">70</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">drawData</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">ghEvents</span><span class="p">);</span>
+  <span class="n">matrix</span><span class="p">.</span><span class="n">fillScreen</span><span class="p">((</span><span class="n">ghEvents</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">byte</span> <span class="n">val</span> <span class="o">=</span> <span class="n">ghEvents</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="n">byte</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="n">WIDTH</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+    <span class="n">byte</span> <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">WIDTH</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+    <span class="n">set2x2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">val</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">matrix</span><span class="p">.</span><span class="n">drawPixel</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">matrix</span><span class="p">.</span><span class="n">Color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">set2x2</span><span class="p">(</span><span class="n">byte</span> <span class="n">x</span><span class="p">,</span> <span class="n">byte</span> <span class="n">y</span><span class="p">,</span> <span class="n">byte</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">;</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="p">;</span>
+  <span class="n">matrix</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">e</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">);</span> 
+<span class="p">}</span>
+</pre></div>
+
+
+<h4>Imp</h4>
+<div class="highlight"><pre><span class="kr">function</span> HttpGetWrapper <span class="p">(</span>url<span class="p">,</span> headers<span class="p">)</span> <span class="p">{</span>
+  local request <span class="o">=</span> http.get<span class="p">(</span>url<span class="p">,</span> headers<span class="p">);</span>
+  local response <span class="o">=</span> request.sendsync<span class="p">();</span>
+  <span class="kr">return</span> response<span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kr">function</span> pollGithub<span class="p">(</span>param<span class="p">)</span> <span class="p">{</span>
+    local url <span class="o">=</span> <span class="s">&quot;https://api.github.com/orgs/enthought/events?access_token=nope&quot;</span><span class="p">;</span>
+    local result <span class="o">=</span> HttpGetWrapper<span class="p">(</span>url<span class="p">,</span> <span class="p">{});</span>
+    local body <span class="o">=</span> result<span class="p">[</span><span class="s">&quot;body&quot;</span><span class="p">];</span>
+    local obj <span class="o">=</span> http.jsondecode<span class="p">(</span>body<span class="p">);</span>
+    <span class="o">//</span>server.log<span class="p">(</span>param<span class="p">);</span>
+    local to_send <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+    foreach<span class="p">(</span>event <span class="kr">in</span> obj<span class="p">)</span> <span class="p">{</span>
+        local actor <span class="o">=</span> event<span class="p">[</span><span class="s">&quot;actor&quot;</span><span class="p">][</span><span class="s">&quot;login&quot;</span><span class="p">];</span>
+        local type <span class="o">=</span> event<span class="p">[</span><span class="s">&quot;type&quot;</span><span class="p">];</span>
+        type <span class="o">=</span> <span class="o">::</span>eventMap<span class="p">[</span>type<span class="p">];</span>
+        to_send <span class="o">+=</span> actor <span class="o">+</span> <span class="s">&quot;.&quot;</span> <span class="o">+</span> type <span class="o">+</span> <span class="s">&quot;,&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+    device.send<span class="p">(</span><span class="s">&quot;res&quot;</span><span class="p">,</span> to_send<span class="p">)</span>
+<span class="p">}</span>
+
+device.on<span class="p">(</span><span class="s">&quot;req&quot;</span><span class="p">,</span> pollGithub<span class="p">)</span>
+
+<span class="o">::</span>eventMap <span class="o">&lt;-</span> <span class="p">{</span>
+    <span class="s">&quot;CommitCommentEvent&quot;</span><span class="o">:</span> <span class="s">&quot;a&quot;</span>
+    <span class="s">&quot;CreateEvent&quot;</span><span class="o">:</span> <span class="s">&quot;b&quot;</span>
+    <span class="s">&quot;DeleteEvent&quot;</span><span class="o">:</span> <span class="s">&quot;c&quot;</span>
+    <span class="s">&quot;DownloadEvent&quot;</span><span class="o">:</span> <span class="s">&quot;d&quot;</span>
+    <span class="s">&quot;FollowEvent&quot;</span><span class="o">:</span> <span class="s">&quot;e&quot;</span>
+    <span class="s">&quot;ForkEvent&quot;</span><span class="o">:</span> <span class="s">&quot;f&quot;</span>
+    <span class="s">&quot;ForkApplyEvent&quot;</span><span class="o">:</span> <span class="s">&quot;g&quot;</span>
+    <span class="s">&quot;GistEvent&quot;</span><span class="o">:</span> <span class="s">&quot;h&quot;</span>
+    <span class="s">&quot;GollumEvent&quot;</span><span class="o">:</span> <span class="s">&quot;i&quot;</span>
+    <span class="s">&quot;IssueCommentEvent&quot;</span><span class="o">:</span> <span class="s">&quot;j&quot;</span>
+    <span class="s">&quot;IssuesEvent&quot;</span><span class="o">:</span> <span class="s">&quot;k&quot;</span>
+    <span class="s">&quot;MemberEvent&quot;</span><span class="o">:</span> <span class="s">&quot;l&quot;</span>
+    <span class="s">&quot;PublicEvent&quot;</span><span class="o">:</span> <span class="s">&quot;m&quot;</span>
+    <span class="s">&quot;PullRequestEvent&quot;</span><span class="o">:</span> <span class="s">&quot;n&quot;</span>
+    <span class="s">&quot;PullRequestReviewCommentEvent&quot;</span><span class="o">:</span> <span class="s">&quot;o&quot;</span>
+    <span class="s">&quot;PushEvent&quot;</span><span class="o">:</span> <span class="s">&quot;p&quot;</span>
+    <span class="s">&quot;ReleaseEvent&quot;</span><span class="o">:</span> <span class="s">&quot;q&quot;</span>
+    <span class="s">&quot;StatusEvent&quot;</span><span class="o">:</span> <span class="s">&quot;r&quot;</span>
+    <span class="s">&quot;TeamAddEvent&quot;</span><span class="o">:</span> <span class="s">&quot;s&quot;</span>
+    <span class="s">&quot;WatchEvent&quot;</span><span class="o">:</span> <span class="s">&quot;t&quot;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h4>Agent</h4>
+<div class="highlight"><pre><span class="nx">local</span> <span class="nx">old_payload</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">readSerial</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="nx">local</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">hardware</span><span class="p">.</span><span class="nx">uart57</span><span class="p">.</span><span class="nx">read</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">result</span> <span class="o">==</span> <span class="mi">99</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">//&quot;c&quot; in ASCII</span>
+        <span class="nx">server</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;chunk - &quot;</span> <span class="o">+</span> <span class="nx">result</span><span class="p">);</span>
+        <span class="nx">server</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;calling sendNextChunk()&quot;</span><span class="p">)</span>
+        <span class="nx">sendNextChunk</span><span class="p">();</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">result</span> <span class="o">==</span> <span class="mi">108</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//&quot;l&quot; in ASCII</span>
+        <span class="nx">server</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;load - &quot;</span> <span class="o">+</span> <span class="nx">result</span><span class="p">);</span>
+        <span class="nx">server</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;sending req to agent&quot;</span><span class="p">)</span>
+        <span class="nx">agent</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;req&quot;</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">imp</span><span class="p">.</span><span class="nx">wakeup</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="nx">readSerial</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">sendNextChunk</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">server</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;sendNextChunk() called&quot;</span><span class="p">);</span>
+    <span class="nx">local</span> <span class="nx">chunk_size</span> <span class="o">=</span> <span class="mi">60</span><span class="p">;</span>
+    <span class="nx">local</span> <span class="nx">to_send</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">old_payload</span><span class="p">.</span><span class="nx">len</span><span class="p">()</span> <span class="o">&lt;</span> <span class="nx">chunk_size</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">to_send</span> <span class="o">=</span> <span class="nx">old_payload</span><span class="p">;</span>
+        <span class="nx">old_payload</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">to_send</span> <span class="o">=</span> <span class="nx">old_payload</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">chunk_size</span><span class="p">);</span>
+        <span class="nx">old_payload</span> <span class="o">=</span> <span class="nx">old_payload</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">chunk_size</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">server</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;to_send: &quot;</span> <span class="o">+</span> <span class="nx">to_send</span><span class="p">)</span>
+    <span class="nx">hardware</span><span class="p">.</span><span class="nx">uart57</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">to_send</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">saveGithub</span><span class="p">(</span><span class="nx">payload</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">server</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;payload: &quot;</span> <span class="o">+</span> <span class="nx">payload</span><span class="p">);</span>
+  <span class="nx">old_payload</span> <span class="o">=</span> <span class="s2">&quot;^&quot;</span> <span class="o">+</span> <span class="nx">payload</span> <span class="o">+</span> <span class="s2">&quot;$&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">agent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;res&quot;</span><span class="p">,</span> <span class="nx">saveGithub</span><span class="p">);</span>
+
+<span class="nx">hardware</span><span class="p">.</span><span class="nx">uart57</span><span class="p">.</span><span class="nx">configure</span><span class="p">(</span><span class="mi">9600</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="nx">PARITY_NONE</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">NO_CTSRTS</span><span class="p">);</span>
+<span class="nx">server</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;starting...&quot;</span><span class="p">);</span>
+<span class="nx">readSerial</span><span class="p">();</span>
+</pre></div>
+</article>
+
+        <footer>
+            <nav>
+                <ul>
+                                                            <li><a href="../../">home</a> ::</li>
+                                                                                                                                                                                            <li><a href="../../talks">talks</a> ::</li>
+                                                                        <li><a href="../../projects">projects</a> ::</li>
+                                    <li><a href="../../raspberry_pi">raspberry_pi</a> ::</li>
+                                    <li><a href="../../software">software</a></li>
+                                </ul>
+            </nav>
+            <p id="theme-credit"><a href="http://docs.getpelican.com/">Powered by Pelican</a>
+            | <a href="http://github.com/jminardi/jminardi.github.io">Hosted on Github</a></p>
+            
+        </footer>
+
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-42321662-1");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

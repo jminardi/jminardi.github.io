@@ -1,5 +1,5 @@
 title: projects
-
+ignore_in_nav: True
 
 ## Tactilous: A Force-Feeback Haptic Glove
 ![](|filename|/images/project-banners/glove.png)
@@ -23,6 +23,18 @@ programming.
 [Youtube Video](http://www.youtube.com/watch?v=tfuv-B1X3ck) | 
 [Raspi Code](https://github.com/jminardi/RobotBrain/tree/master/robot_brain/servers/car_server) | 
 [Android Code](https://github.com/jminardi/RobotBrain-Controller) 
+
+<br>
+## Github Event Display on LED Matrix
+![](|filename|/images/project-banners/gh-display.png)
+
+This project consists of an Arduino, Electric Imp, and an 8x16 RGB LED Matrix.
+The matrix displays live updates from my organization's Github events feed in
+real time.
+
+[Blog Post](displaying-realtime-github-activity-on-a-full-color-led-matrix/) | 
+[Youtube Video](http://www.youtube.com/watch?v=zrsNJpTwHrw) | 
+[Source Code](https://github.com/jminardi/github-events-display)
 
 <br>
 ## RobotBrain: An Open Source Python Framework for Sensor and Actuator Control
