@@ -269,7 +269,7 @@ connections needed for the software to work:&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;Imp&lt;/h4&gt;
+&lt;h4&gt;Agent&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kr"&gt;function&lt;/span&gt; HttpGetWrapper &lt;span class="p"&gt;(&lt;/span&gt;url&lt;span class="p"&gt;,&lt;/span&gt; headers&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
   local request &lt;span class="o"&gt;=&lt;/span&gt; http.get&lt;span class="p"&gt;(&lt;/span&gt;url&lt;span class="p"&gt;,&lt;/span&gt; headers&lt;span class="p"&gt;);&lt;/span&gt;
   local response &lt;span class="o"&gt;=&lt;/span&gt; request.sendsync&lt;span class="p"&gt;();&lt;/span&gt;
@@ -319,7 +319,7 @@ device.on&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;req
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;Agent&lt;/h4&gt;
+&lt;h4&gt;Imp&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;local&lt;/span&gt; &lt;span class="nx"&gt;old_payload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
 &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;readSerial&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;

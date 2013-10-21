@@ -308,7 +308,7 @@ void set2x2(byte x, byte y, byte e) {
 }
 ```
 
-#### Imp
+#### Agent
 
 ```
 function HttpGetWrapper (url, headers) {
@@ -359,7 +359,7 @@ device.on("req", pollGithub)
 }
 ```
 
-#### Agent
+#### Imp
 
 ```
 local old_payload = "";

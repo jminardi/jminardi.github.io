@@ -315,7 +315,7 @@ connections needed for the software to work:</p>
 </pre></div>
 
 
-<h4>Imp</h4>
+<h4>Agent</h4>
 <div class="highlight"><pre><span class="kr">function</span> HttpGetWrapper <span class="p">(</span>url<span class="p">,</span> headers<span class="p">)</span> <span class="p">{</span>
   local request <span class="o">=</span> http.get<span class="p">(</span>url<span class="p">,</span> headers<span class="p">);</span>
   local response <span class="o">=</span> request.sendsync<span class="p">();</span>
@@ -365,7 +365,7 @@ device.on<span class="p">(</span><span class="s">&quot;req&quot;</span><span cla
 </pre></div>
 
 
-<h4>Agent</h4>
+<h4>Imp</h4>
 <div class="highlight"><pre><span class="nx">local</span> <span class="nx">old_payload</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">readSerial</span><span class="p">()</span> <span class="p">{</span>
