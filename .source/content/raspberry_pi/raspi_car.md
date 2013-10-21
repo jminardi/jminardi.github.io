@@ -9,6 +9,10 @@ Here is a picture of the fully assembled car:
 
 <img src='/static/images/toycar/assembled.jpg' width=600>
 
+And here is a quick video of the operation:
+
+<iframe width="600" height="450" src="//www.youtube.com/embed/tfuv-B1X3ck" frameborder="0" allowfullscreen></iframe>
+
 I wrote an [android app](https://github.com/jminardi/RobotBrain-Controller)
 that streams the accelerometer data from the phone to the pi over a simple
 socket.  The pi then uses this data to drive the DC motor and the servo motor.
