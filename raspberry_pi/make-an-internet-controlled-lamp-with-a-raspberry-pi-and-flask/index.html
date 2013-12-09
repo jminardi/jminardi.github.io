@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>jack.minardi.org : Make an Internet Controlled Lamp with a Raspberry Pi and Flask</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="../../theme/css/main.css" type="text/css" />
+        <link href="../../" type="application/atom+xml" rel="alternate" title="jack.minardi.org ATOM Feed" />
+        
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="../../css/ie.css"/>
+                <script src="../../js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="../../css/ie6.css"/><![endif]-->
+
+</head>
+
+<body>
+
+        <footer>
+            <ul id="social">
+                <li><a href="https://github.com/jminardi"><img src="../../static/images/github.png"></a></li>
+                <li><a href="http://www.twitter.com/jackminardi"><img src="../../static/images/twitter.png"></a></li>
+                <li><a href="http://www.linkedin.com/in/jackminardi"><img src="/static/images/linkedin.png"></a></li>
+                <li><a href="mailto:jack@minardi.org"><img src="../../static/images/mail.png"></a></li>
+                <li><a href="../../feeds/all.rss.xml"><img src="../../static/images/rss.png"></a></li>
+            </ul>
+            <nav>
+                <ul>
+                                                            <li><a href="../../">home</a> ::</li>
+                                                                                                                                                                                            <li><a href="../../talks">talks</a> ::</li>
+                                                                        <li><a href="../../projects">projects</a> ::</li>
+                                    <li><a href="../../raspberry_pi">raspberry_pi</a> ::</li>
+                                    <li><a href="../../software">software</a></li>
+                                </ul>
+            </nav>
+        </footer>
+
+                
+<header>
+    <h1><a href="../.." id="site-title">jack.minardi.org </a> :
+        <a href="../../raspberry_pi/make-an-internet-controlled-lamp-with-a-raspberry-pi-and-flask" id="page-title">Make an Internet Controlled Lamp with a Raspberry Pi and Flask</a></h1>
+    <time datetime="2013-11-15T00:00:00">November 2013</time></header>
+<article>
+    <h2>The Internet of Things.</h2>
+<p><a href="http://www.w3c.fr/les-francais-et-le-web-utilisation-et-supports/" id="borderless">
+<img alt="" src="../../static/images/lamp/devices.jpg" />
+</a></p>
+<p>For far too long humans having been hogging all the internet to themselves.  It
+is time to change that. Now that the future is here we can start connecting
+everything we own, allowing the world of buggy software to
+permeate deeper into our lives.</p>
+<h2>Overview</h2>
+<p>Here I will be showing you how to turn on and off a lamp from anywhere in the
+world. However, you can control any device that works by toggling its power
+source, such as a fountain, TV, Christmas tree lights, projector, etc.</p>
+<h3>Required Hardware</h3>
+<ul>
+<li>Raspberry Pi</li>
+<li>Internet Connection (Ethernet or WiFi)</li>
+<li>Device Under Control (Lamp in my case)</li>
+<li>Remote Controlled Outlets (<a href="http://www.amazon.com/gp/product/B003ZTWYXY/ref=as_li_qf_sp_asin_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B003ZTWYXY&linkCode=as2&tag=jackminardior-20">I used these.</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=jackminardior-20&l=as2&o=1&a=B003ZTWYXY" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />*)</li>
+<li>6 2N2222A Transisitors (<a href="http://www.amazon.com/gp/product/B00ATNH72C/ref=as_li_qf_sp_asin_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00ATNH72C&linkCode=as2&tag=jackminardior-20">Here's 100 of them</a><img src="http://ir-na.amazon-adsystem.com/e/ir?t=jackminardior-20&l=as2&o=1&a=B00ATNH72C" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />*)</li>
+<li>Jumper wires and breadboard</li>
+<li>Soldering Iron</li>
+</ul>
+<p><em>* affiliate links</em></p>
+<p>Our goal it to hack into the remote that controls the outlet, allowing us to
+toggle the buttons with the Raspberry Pi's GPIO pins. Check out my page on
+<a href="http://jack.minardi.org/raspberry_pi/opendevreal_world/">hardware control</a> for more information about GPIO pins. We will then set
+up a simple webserver with <a href="http://flask.pocoo.org/">Flask</a> to allow remote control of the outlets
+from anywhere with a web connection.</p>
+<h2>Hacking into the Remote</h2>
+<p>To open up the remote I first had to remove the battery cover and undo one
+screw. Once this was done I was able to pry the two covers apart using a flat
+head screwdriver. With the plastic gone, you can see the simple through-hole
+circuit board. See below for a picture of the front and back.  (Ignore the
+wires for now, I forgot to take a picture before I soldered them on.)</p>
+<p><a href='/static/images/lamp/front.jpg', id='borderless'>
+<img src='/static/images/lamp/front.jpg' width=280>
+</a>
+<a href='/static/images/lamp/back.jpg', id='borderless'>
+<img src='/static/images/lamp/back.jpg' width=280>
+</a></p>
+<p>As you can see in the first picture, there are two rows of buttons - an on and
+off button for each of the three outlets. Our goal is to control those buttons
+with the Raspberry Pi. We can accomplish this with a circuit element known as
+a transistor. Basically, a transistor is just a switch that can be controlled
+with a computer, which is exactly what we need.</p>
+<h3>2N222A Transistor</h3>
+<p>The specific transistor I will be using here is the infamous 2N222A. All 2N222A
+transistors have three pins. Two of the pins are inserted in series into your
+circuit, and the third pin controls if the transistor conducts current (closed
+switch) or does not conduct current (open switch). To close the switch and
+allow current to flow, this third control pin needs to be raised high. To open
+the circuit and stop current, the control pin should be set low. The circuit
+diagram symbol for transistors is shown below:</p>
+<p><img alt="" src="../../static/images/lamp/transistor.png" /></p>
+<p>The collector is where current should flow in and the emitter is where current
+should flow out. The base pin is the control pin I mentioned above, which is
+used to control the state of the transistor (conducting or not conducting). The
+arrow drawn on the symbol indicates the direction of current flow. You can read
+more about the specifics of the 2N222A in the <a href="http://www.fairchildsemi.com/ds/PN/PN2222.pdf">datasheet</a> (PDF).</p>
+<p>To identify which pin is which, hold the transistor with the flat side facing
+you. The left pin is the emitter, the middle pin is the base, and the right
+pin is the collector.</p>
+<p>Our goal is to use the transistor to bridge the same gap as the buttons on the
+remote, so that applying a voltage to the base pin on the transistor will close
+the circuit just as pressing the button would. In this way we are able to
+simulate a button press without knowing anything at all about the circuit the
+buttons are a part of.</p>
+<h3>Time to Solder Things</h3>
+<p>The first step is to solder wires to each side of the buttons. Here I am only
+going to connect up two of the buttons (on and off for outlet 1) but you can
+follow the pattern and connect up all six. In the picture below I've
+labeled the three places you will need to solder cabled to.</p>
+<p><img alt="" src="../../static/images/lamp/labeled.png" /></p>
+<p>Solder wires to the positions indicated above so it is easier to connect this
+remote to a breadboard. Once this is done connect the wires across a
+transistor using your breadboard. See below for a circuit diagram</p>
+<p>While not captured in this photo, you will also need to solder a wire to the
+ground terminal and connect that to the ground of the Raspberry Pi. You can 
+see this ground connection in the finished photo below.</p>
+<p><img alt="" src="../../static/images/lamp/diagram.png" /></p>
+<p>Now all we have to do is connect a GPIO pin from the Pi to the base of each
+transistor. Here I am using GPIO pins 18 and 23. You can see a photo of this
+whole setup below.</p>
+<p><a href='/static/images/lamp/finished.jpg', id='borderless'>
+<img src='/static/images/lamp/finished.jpg' width=550>
+</a></p>
+<h2>Software</h2>
+<p>The next step is to use Flask to expose our new circuit to the internet. I will
+be using my hardware control library <a href="https://github.com/jminardi/RobotBrain">RobotBrain</a> to simplify the code. Here
+I'll show the code in its entirety and then point out the important bits.</p>
+<p>There are only two files. <code>lamp_control.py</code> and <code>templates/main.html</code>
+(note that <code>main.html</code> needs to be in a directory called <code>templates</code>)</p>
+<p>If you'd rather <code>git pull</code> than copy/paste you can find all the code on
+<a href="https://github.com/jminardi/lamp_control">github</a>.</p>
+<h2><code>lamp_control.py</code></h2>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">time</span>                                                                     
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">cycle</span>                                                     
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>                                        
+<span class="kn">from</span> <span class="nn">robot_brain.gpio_pin</span> <span class="kn">import</span> <span class="n">GPIOPin</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>                                                           
+<span class="n">on_pin</span> <span class="o">=</span> <span class="n">GPIOPin</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>                                                            
+<span class="n">off_pin</span> <span class="o">=</span> <span class="n">GPIOPin</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>                                                           
+<span class="n">state_cycle</span> <span class="o">=</span> <span class="n">cycle</span><span class="p">([</span><span class="s">&#39;on&#39;</span><span class="p">,</span> <span class="s">&#39;off&#39;</span><span class="p">])</span>
+
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)</span>                                                                 
+<span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/&lt;state&gt;&quot;</span><span class="p">)</span>                                                          
+<span class="k">def</span> <span class="nf">update_lamp</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>                                                    
+    <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="s">&#39;on&#39;</span><span class="p">:</span>                                                           
+        <span class="n">on_pin</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                                                           
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="o">.</span><span class="mi">2</span><span class="p">)</span>                                                          
+        <span class="n">on_pin</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                                                           
+    <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="s">&#39;off&#39;</span><span class="p">:</span>                                                          
+        <span class="n">off_pin</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>                                                          
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="o">.</span><span class="mi">2</span><span class="p">)</span>                                                          
+        <span class="n">off_pin</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>                                                          
+    <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="s">&#39;toggle&#39;</span><span class="p">:</span>                                                       
+        <span class="n">state</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">state_cycle</span><span class="p">)</span>                                               
+        <span class="n">update_lamp</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>                                                      
+    <span class="n">template_data</span> <span class="o">=</span> <span class="p">{</span>                                                           
+        <span class="s">&#39;title&#39;</span> <span class="p">:</span> <span class="n">state</span><span class="p">,</span>                                                        
+    <span class="p">}</span>                                                                           
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;main.html&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">template_data</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>                                                      
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Here we are using Flask to respond to HTTP requests. Whenever the root URL or
+an immediate subdirectory of root is requested, the <code>update_lamp()</code> function
+is called. If any subdirectory is requested, the name of that subdirectory is
+fed as an argument to the function. For example, if <code>&lt;my-ip&gt;/foo</code> is requested,
+Flask will call <code>update_lamp('foo')</code> and respond with whatever the function
+returns. The <code>update_lamp()</code> function checks for one of three states (<code>on</code>,
+<code>off</code>, or <code>toggle</code>) and performs the desired behavior. </p>
+<h2><code>templates/main.html</code></h2>
+<div class="highlight"><pre><span class="cp">&lt;!DOCTYPE html&gt;</span>                                                                 
+   <span class="nt">&lt;head&gt;</span>                                                                       
+    <span class="nt">&lt;title&gt;</span>{{ title }}<span class="nt">&lt;/title&gt;</span>                                                  
+    <span class="nt">&lt;style </span><span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>                                                     
+        <span class="nt">body</span> <span class="p">{</span>                                                                  
+            <span class="k">padding</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>                                                         
+            <span class="k">margin</span><span class="o">:</span> <span class="m">0</span><span class="p">;</span>                                                          
+        <span class="p">}</span>                                                                       
+        <span class="nc">.large_button</span> <span class="p">{</span>                                                         
+            <span class="k">position</span><span class="o">:</span> <span class="k">absolute</span><span class="p">;</span>                                                 
+            <span class="k">width</span><span class="o">:</span> <span class="m">100</span><span class="o">%</span><span class="p">;</span>                                                        
+            <span class="k">height</span><span class="o">:</span> <span class="m">50</span><span class="o">%</span><span class="p">;</span>                                                        
+            <span class="k">text-align</span><span class="o">:</span> <span class="k">center</span><span class="p">;</span>                                                 
+            <span class="k">text-decoration</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>                                              
+            <span class="k">font-size</span><span class="o">:</span> <span class="m">1000</span><span class="o">%</span><span class="p">;</span>
+
+        <span class="p">}</span>                                                                       
+        <span class="nf">#on</span> <span class="p">{</span>                                                                   
+            <span class="k">background-color</span><span class="o">:</span> <span class="m">#fbf09a</span><span class="p">;</span>                                          
+            <span class="k">color</span><span class="o">:</span> <span class="k">rgb</span><span class="p">(</span><span class="m">223</span><span class="o">,</span> <span class="m">204</span><span class="o">,</span> <span class="m">103</span><span class="p">);</span>                                          
+            <span class="k">text-shadow</span><span class="o">:</span> <span class="m">1px</span> <span class="m">1px</span> <span class="m">10px</span> <span class="m">#5C4E17</span><span class="p">;</span>                                  
+        <span class="p">}</span>                                                                       
+        <span class="nf">#off</span> <span class="p">{</span>                                                                  
+            <span class="k">background-color</span><span class="o">:</span> <span class="m">#1e170b</span><span class="p">;</span>                                          
+            <span class="k">top</span><span class="o">:</span> <span class="m">50</span><span class="o">%</span><span class="p">;</span>                                                           
+            <span class="k">color</span><span class="o">:</span> <span class="k">rgb</span><span class="p">(</span><span class="m">83</span><span class="o">,</span> <span class="m">71</span><span class="o">,</span> <span class="m">48</span><span class="p">);</span>                                             
+            <span class="k">text-shadow</span><span class="o">:</span> <span class="m">1px</span> <span class="m">1px</span> <span class="m">10px</span> <span class="m">#000000</span><span class="p">;</span>                                  
+        <span class="p">}</span>                                                                       
+    <span class="nt">&lt;/style&gt;</span>                                                                    
+    <span class="nt">&lt;/head&gt;</span>                                                                     
+    <span class="nt">&lt;body&gt;</span>                                                                      
+        <span class="nt">&lt;h1&gt;</span>                                                                    
+            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/on&quot;</span> <span class="na">id=</span><span class="s">&quot;on&quot;</span> <span class="na">class=</span><span class="s">&quot;large_button&quot;</span><span class="nt">&gt;</span>ON<span class="nt">&lt;/a&gt;</span>                   
+        <span class="nt">&lt;/h1&gt;</span>                                                                   
+        <span class="nt">&lt;h1&gt;</span>                                                                    
+            <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/off&quot;</span> <span class="na">id=</span><span class="s">&quot;off&quot;</span> <span class="na">class=</span><span class="s">&quot;large_button&quot;</span><span class="nt">&gt;</span>OFF<span class="nt">&lt;/a&gt;</span>                
+        <span class="nt">&lt;/h1&gt;</span>                                                                   
+    <span class="nt">&lt;/body&gt;</span>                                                                     
+<span class="nt">&lt;/html&gt;</span>
+</pre></div>
+
+
+<p>This is the template that is rendered by the above Flask function. When
+rendered it looks like this:</p>
+<p><a href='/static/images/lamp/screenshot.png', id='borderless'>
+<img src='/static/images/lamp/screenshot.png' id='borderless' width=550>
+</a></p>
+<p>To start the server simply run the script with root privileges (GPIO access
+needs root):</p>
+<div class="highlight"><pre><span class="n">sudo</span> <span class="n">python</span> <span class="n">lamp_control</span><span class="p">.</span><span class="n">py</span>
+</pre></div>
+
+
+<p>Now just navigate to your Pi's IP address and you should be able to control
+the lamp!</p>
+<p>NOTE: I am not a Flask or web design expert, so I might not be doing things
+the correct way. But it wouldn't be hacking if we knew what we was doing all
+the time, would it?</p>
+<h2>Conclusion</h2>
+<p>I usually run the script with screen so I can reconnect later. I've also added
+an Android homescreen shortcut that links to the toggle URL so I can easily
+control the light from my homescreen.</p>
+<p>In the end I was pretty happy with how simple this turned out to be. If you
+follow these instructions and connect one of your devices to the internet, I'd
+love to hear about it! You can reach me on twitter
+<a href="http://www.twitter.com/jackminardi">@jackminardi</a>.</p>
+</article>
+
+        <footer>
+            <nav>
+                <ul>
+                                                            <li><a href="../../">home</a> ::</li>
+                                                                                                                                                                                            <li><a href="../../talks">talks</a> ::</li>
+                                                                        <li><a href="../../projects">projects</a> ::</li>
+                                    <li><a href="../../raspberry_pi">raspberry_pi</a> ::</li>
+                                    <li><a href="../../software">software</a></li>
+                                </ul>
+            </nav>
+            <p id="theme-credit"><a href="http://docs.getpelican.com/">Powered by Pelican</a>
+            | <a href="http://github.com/jminardi/jminardi.github.io">Hosted on Github</a></p>
+            
+        </footer>
+
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-42321662-1");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+</body>
+</html>

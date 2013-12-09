@@ -1,5 +1,207 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>jack.minardi.org</title><link>http://jack.minardi.org/</link><description></description><atom:link href="http://jack.minardi.org/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Sun, 13 Oct 2013 00:00:00 -0000</lastBuildDate><item><title>Displaying Realtime Github Activity on a Full Color LED Matrix</title><link>http://jack.minardi.org/projects/displaying-realtime-github-activity-on-a-full-color-led-matrix</link><description>&lt;h2&gt;Overview&lt;/h2&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>jack.minardi.org</title><link>http://jack.minardi.org/</link><description></description><atom:link href="http://jack.minardi.org/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 15 Nov 2013 00:00:00 -0000</lastBuildDate><item><title>Make an Internet Controlled Lamp with a Raspberry Pi and Flask</title><link>http://jack.minardi.org/raspberry_pi/make-an-internet-controlled-lamp-with-a-raspberry-pi-and-flask</link><description>&lt;h2&gt;The Internet of Things.&lt;/h2&gt;
+&lt;p&gt;&lt;a href="http://www.w3c.fr/les-francais-et-le-web-utilisation-et-supports/" id="borderless"&gt;
+&lt;img alt="" src="http://jack.minardi.org/static/images/lamp/devices.jpg" /&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;For far too long humans having been hogging all the internet to themselves.  It
+is time to change that. Now that the future is here we can start connecting
+everything we own, allowing the world of buggy software to
+permeate deeper into our lives.&lt;/p&gt;
+&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;Here I will be showing you how to turn on and off a lamp from anywhere in the
+world. However, you can control any device that works by toggling its power
+source, such as a fountain, TV, Christmas tree lights, projector, etc.&lt;/p&gt;
+&lt;h3&gt;Required Hardware&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Raspberry Pi&lt;/li&gt;
+&lt;li&gt;Internet Connection (Ethernet or WiFi)&lt;/li&gt;
+&lt;li&gt;Device Under Control (Lamp in my case)&lt;/li&gt;
+&lt;li&gt;Remote Controlled Outlets (&lt;a href="http://www.amazon.com/gp/product/B003ZTWYXY/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B003ZTWYXY&amp;linkCode=as2&amp;tag=jackminardior-20"&gt;I used these.&lt;/a&gt;&lt;img src="http://ir-na.amazon-adsystem.com/e/ir?t=jackminardior-20&amp;l=as2&amp;o=1&amp;a=B003ZTWYXY" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /&gt;*)&lt;/li&gt;
+&lt;li&gt;6 2N2222A Transisitors (&lt;a href="http://www.amazon.com/gp/product/B00ATNH72C/ref=as_li_qf_sp_asin_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00ATNH72C&amp;linkCode=as2&amp;tag=jackminardior-20"&gt;Here's 100 of them&lt;/a&gt;&lt;img src="http://ir-na.amazon-adsystem.com/e/ir?t=jackminardior-20&amp;l=as2&amp;o=1&amp;a=B00ATNH72C" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" /&gt;*)&lt;/li&gt;
+&lt;li&gt;Jumper wires and breadboard&lt;/li&gt;
+&lt;li&gt;Soldering Iron&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;* affiliate links&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Our goal it to hack into the remote that controls the outlet, allowing us to
+toggle the buttons with the Raspberry Pi's GPIO pins. Check out my page on
+&lt;a href="http://jack.minardi.org/raspberry_pi/opendevreal_world/"&gt;hardware control&lt;/a&gt; for more information about GPIO pins. We will then set
+up a simple webserver with &lt;a href="http://flask.pocoo.org/"&gt;Flask&lt;/a&gt; to allow remote control of the outlets
+from anywhere with a web connection.&lt;/p&gt;
+&lt;h2&gt;Hacking into the Remote&lt;/h2&gt;
+&lt;p&gt;To open up the remote I first had to remove the battery cover and undo one
+screw. Once this was done I was able to pry the two covers apart using a flat
+head screwdriver. With the plastic gone, you can see the simple through-hole
+circuit board. See below for a picture of the front and back.  (Ignore the
+wires for now, I forgot to take a picture before I soldered them on.)&lt;/p&gt;
+&lt;p&gt;&lt;a href='/static/images/lamp/front.jpg', id='borderless'&gt;
+&lt;img src='/static/images/lamp/front.jpg' width=280&gt;
+&lt;/a&gt;
+&lt;a href='/static/images/lamp/back.jpg', id='borderless'&gt;
+&lt;img src='/static/images/lamp/back.jpg' width=280&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;As you can see in the first picture, there are two rows of buttons - an on and
+off button for each of the three outlets. Our goal is to control those buttons
+with the Raspberry Pi. We can accomplish this with a circuit element known as
+a transistor. Basically, a transistor is just a switch that can be controlled
+with a computer, which is exactly what we need.&lt;/p&gt;
+&lt;h3&gt;2N222A Transistor&lt;/h3&gt;
+&lt;p&gt;The specific transistor I will be using here is the infamous 2N222A. All 2N222A
+transistors have three pins. Two of the pins are inserted in series into your
+circuit, and the third pin controls if the transistor conducts current (closed
+switch) or does not conduct current (open switch). To close the switch and
+allow current to flow, this third control pin needs to be raised high. To open
+the circuit and stop current, the control pin should be set low. The circuit
+diagram symbol for transistors is shown below:&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://jack.minardi.org/static/images/lamp/transistor.png" /&gt;&lt;/p&gt;
+&lt;p&gt;The collector is where current should flow in and the emitter is where current
+should flow out. The base pin is the control pin I mentioned above, which is
+used to control the state of the transistor (conducting or not conducting). The
+arrow drawn on the symbol indicates the direction of current flow. You can read
+more about the specifics of the 2N222A in the &lt;a href="http://www.fairchildsemi.com/ds/PN/PN2222.pdf"&gt;datasheet&lt;/a&gt; (PDF).&lt;/p&gt;
+&lt;p&gt;To identify which pin is which, hold the transistor with the flat side facing
+you. The left pin is the emitter, the middle pin is the base, and the right
+pin is the collector.&lt;/p&gt;
+&lt;p&gt;Our goal is to use the transistor to bridge the same gap as the buttons on the
+remote, so that applying a voltage to the base pin on the transistor will close
+the circuit just as pressing the button would. In this way we are able to
+simulate a button press without knowing anything at all about the circuit the
+buttons are a part of.&lt;/p&gt;
+&lt;h3&gt;Time to Solder Things&lt;/h3&gt;
+&lt;p&gt;The first step is to solder wires to each side of the buttons. Here I am only
+going to connect up two of the buttons (on and off for outlet 1) but you can
+follow the pattern and connect up all six. In the picture below I've
+labeled the three places you will need to solder cabled to.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://jack.minardi.org/static/images/lamp/labeled.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Solder wires to the positions indicated above so it is easier to connect this
+remote to a breadboard. Once this is done connect the wires across a
+transistor using your breadboard. See below for a circuit diagram&lt;/p&gt;
+&lt;p&gt;While not captured in this photo, you will also need to solder a wire to the
+ground terminal and connect that to the ground of the Raspberry Pi. You can 
+see this ground connection in the finished photo below.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://jack.minardi.org/static/images/lamp/diagram.png" /&gt;&lt;/p&gt;
+&lt;p&gt;Now all we have to do is connect a GPIO pin from the Pi to the base of each
+transistor. Here I am using GPIO pins 18 and 23. You can see a photo of this
+whole setup below.&lt;/p&gt;
+&lt;p&gt;&lt;a href='/static/images/lamp/finished.jpg', id='borderless'&gt;
+&lt;img src='/static/images/lamp/finished.jpg' width=550&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;Software&lt;/h2&gt;
+&lt;p&gt;The next step is to use Flask to expose our new circuit to the internet. I will
+be using my hardware control library &lt;a href="https://github.com/jminardi/RobotBrain"&gt;RobotBrain&lt;/a&gt; to simplify the code. Here
+I'll show the code in its entirety and then point out the important bits.&lt;/p&gt;
+&lt;p&gt;There are only two files. &lt;code&gt;lamp_control.py&lt;/code&gt; and &lt;code&gt;templates/main.html&lt;/code&gt;
+(note that &lt;code&gt;main.html&lt;/code&gt; needs to be in a directory called &lt;code&gt;templates&lt;/code&gt;)&lt;/p&gt;
+&lt;p&gt;If you'd rather &lt;code&gt;git pull&lt;/code&gt; than copy/paste you can find all the code on
+&lt;a href="https://github.com/jminardi/lamp_control"&gt;github&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;&lt;code&gt;lamp_control.py&lt;/code&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;                                                                     
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;itertools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;cycle&lt;/span&gt;                                                     
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;flask&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;render_template&lt;/span&gt;                                        
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;robot_brain.gpio_pin&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;GPIOPin&lt;/span&gt;
+
+&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Flask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                                                           
+&lt;span class="n"&gt;on_pin&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GPIOPin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                                                            
+&lt;span class="n"&gt;off_pin&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;GPIOPin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;23&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                                                           
+&lt;span class="n"&gt;state_cycle&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cycle&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;on&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;off&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                                                                 
+&lt;span class="nd"&gt;@app.route&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/&amp;lt;state&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                                                          
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update_lamp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;                                                    
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;on&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;                                                           
+        &lt;span class="n"&gt;on_pin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                                                           
+        &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                                                          
+        &lt;span class="n"&gt;on_pin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                                                           
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;off&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;                                                          
+        &lt;span class="n"&gt;off_pin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                                                          
+        &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sleep&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                                                          
+        &lt;span class="n"&gt;off_pin&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                                                          
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;toggle&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;                                                       
+        &lt;span class="n"&gt;state&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;next&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;state_cycle&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                                               
+        &lt;span class="n"&gt;update_lamp&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;                                                      
+    &lt;span class="n"&gt;template_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;                                                           
+        &lt;span class="s"&gt;&amp;#39;title&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;state&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;                                                        
+    &lt;span class="p"&gt;}&lt;/span&gt;                                                                           
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;render_template&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;main.html&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;template_data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;                                                      
+    &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;host&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;0.0.0.0&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Here we are using Flask to respond to HTTP requests. Whenever the root URL or
+an immediate subdirectory of root is requested, the &lt;code&gt;update_lamp()&lt;/code&gt; function
+is called. If any subdirectory is requested, the name of that subdirectory is
+fed as an argument to the function. For example, if &lt;code&gt;&amp;lt;my-ip&amp;gt;/foo&lt;/code&gt; is requested,
+Flask will call &lt;code&gt;update_lamp('foo')&lt;/code&gt; and respond with whatever the function
+returns. The &lt;code&gt;update_lamp()&lt;/code&gt; function checks for one of three states (&lt;code&gt;on&lt;/code&gt;,
+&lt;code&gt;off&lt;/code&gt;, or &lt;code&gt;toggle&lt;/code&gt;) and performs the desired behavior. &lt;/p&gt;
+&lt;h2&gt;&lt;code&gt;templates/main.html&lt;/code&gt;&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;                                                                 
+   &lt;span class="nt"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;                                                                       
+    &lt;span class="nt"&gt;&amp;lt;title&amp;gt;&lt;/span&gt;{{ title }}&lt;span class="nt"&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;                                                  
+    &lt;span class="nt"&gt;&amp;lt;style &lt;/span&gt;&lt;span class="na"&gt;type=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text/css&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;                                                     
+        &lt;span class="nt"&gt;body&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;                                                                  
+            &lt;span class="k"&gt;padding&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;                                                         
+            &lt;span class="k"&gt;margin&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;                                                          
+        &lt;span class="p"&gt;}&lt;/span&gt;                                                                       
+        &lt;span class="nc"&gt;.large_button&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;                                                         
+            &lt;span class="k"&gt;position&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;absolute&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;                                                 
+            &lt;span class="k"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;100&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;                                                        
+            &lt;span class="k"&gt;height&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;50&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;                                                        
+            &lt;span class="k"&gt;text-align&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;center&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;                                                 
+            &lt;span class="k"&gt;text-decoration&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;none&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;                                              
+            &lt;span class="k"&gt;font-size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;1000&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+        &lt;span class="p"&gt;}&lt;/span&gt;                                                                       
+        &lt;span class="nf"&gt;#on&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;                                                                   
+            &lt;span class="k"&gt;background-color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#fbf09a&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;                                          
+            &lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;rgb&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;223&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;204&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;103&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;                                          
+            &lt;span class="k"&gt;text-shadow&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;1px&lt;/span&gt; &lt;span class="m"&gt;1px&lt;/span&gt; &lt;span class="m"&gt;10px&lt;/span&gt; &lt;span class="m"&gt;#5C4E17&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;                                  
+        &lt;span class="p"&gt;}&lt;/span&gt;                                                                       
+        &lt;span class="nf"&gt;#off&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;                                                                  
+            &lt;span class="k"&gt;background-color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;#1e170b&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;                                          
+            &lt;span class="k"&gt;top&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;50&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;                                                           
+            &lt;span class="k"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;rgb&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="m"&gt;83&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;71&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="m"&gt;48&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;                                             
+            &lt;span class="k"&gt;text-shadow&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;1px&lt;/span&gt; &lt;span class="m"&gt;1px&lt;/span&gt; &lt;span class="m"&gt;10px&lt;/span&gt; &lt;span class="m"&gt;#000000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;                                  
+        &lt;span class="p"&gt;}&lt;/span&gt;                                                                       
+    &lt;span class="nt"&gt;&amp;lt;/style&amp;gt;&lt;/span&gt;                                                                    
+    &lt;span class="nt"&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;                                                                     
+    &lt;span class="nt"&gt;&amp;lt;body&amp;gt;&lt;/span&gt;                                                                      
+        &lt;span class="nt"&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;                                                                    
+            &lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/on&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;on&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;large_button&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;ON&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;                   
+        &lt;span class="nt"&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;                                                                   
+        &lt;span class="nt"&gt;&amp;lt;h1&amp;gt;&lt;/span&gt;                                                                    
+            &lt;span class="nt"&gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/off&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;off&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;large_button&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;OFF&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;                
+        &lt;span class="nt"&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;                                                                   
+    &lt;span class="nt"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;                                                                     
+&lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This is the template that is rendered by the above Flask function. When
+rendered it looks like this:&lt;/p&gt;
+&lt;p&gt;&lt;a href='/static/images/lamp/screenshot.png', id='borderless'&gt;
+&lt;img src='/static/images/lamp/screenshot.png' id='borderless' width=550&gt;
+&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;To start the server simply run the script with root privileges (GPIO access
+needs root):&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;python&lt;/span&gt; &lt;span class="n"&gt;lamp_control&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now just navigate to your Pi's IP address and you should be able to control
+the lamp!&lt;/p&gt;
+&lt;p&gt;NOTE: I am not a Flask or web design expert, so I might not be doing things
+the correct way. But it wouldn't be hacking if we knew what we was doing all
+the time, would it?&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;I usually run the script with screen so I can reconnect later. I've also added
+an Android homescreen shortcut that links to the toggle URL so I can easily
+control the light from my homescreen.&lt;/p&gt;
+&lt;p&gt;In the end I was pretty happy with how simple this turned out to be. If you
+follow these instructions and connect one of your devices to the internet, I'd
+love to hear about it! You can reach me on twitter
+&lt;a href="http://www.twitter.com/jackminardi"&gt;@jackminardi&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jack Minardi</dc:creator><pubDate>Fri, 15 Nov 2013 00:00:00 -0000</pubDate><guid>tag:jack.minardi.org,2013-11-15:raspberry_pi/make-an-internet-controlled-lamp-with-a-raspberry-pi-and-flask</guid></item><item><title>Displaying Realtime Github Activity on a Full Color LED Matrix</title><link>http://jack.minardi.org/projects/displaying-realtime-github-activity-on-a-full-color-led-matrix</link><description>&lt;h2&gt;Overview&lt;/h2&gt;
 &lt;p&gt;&lt;img alt="LED Matrix" src="http://jack.minardi.org/static/images/project-banners/gh-display.png" /&gt;&lt;/p&gt;
 &lt;p&gt;The goal of this project was to display real time activity from my companies
 Github feed. I used an RGB LED matrix to display information about the last 30
