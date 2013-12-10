@@ -26,6 +26,3 @@ You can see me demo the design in my [TechCrunch
 interview](http://techcrunch.com/2013/02/26/y-combinator-hardware-hackathon-winner/).
 [Here](https://gist.github.com/jminardi/5022297) is the script that powered the
 demo.
-
-I am currently working on a book involving Raspberry Pis, home automation,
-mobile software, and possibly powerful lasers.
