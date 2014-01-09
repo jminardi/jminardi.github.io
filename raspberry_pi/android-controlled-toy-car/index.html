@@ -19,25 +19,22 @@
 </head>
 
 <body>
-
-        <footer>
-            <ul id="social">
-                <li><a href="https://github.com/jminardi"><img src="../../images/social-icons/github.png"></a></li>
-                <li><a href="http://www.twitter.com/jackminardi"><img src="../../images/social-icons/twitter.png"></a></li>
-                <li><a href="http://www.linkedin.com/in/jackminardi"><img src="/images/social-icons/linkedin.png"></a></li>
-                <li><a href="mailto:jack@minardi.org"><img src="../../images/social-icons/mail.png"></a></li>
-                <li><a href="../../feeds/all.rss.xml"><img src="../../images/social-icons/rss.png"></a></li>
+<ul id="social">
+    <li><a href="https://github.com/jminardi"><img src="../../images/social-icons/github.png"></a></li>
+    <li><a href="http://www.twitter.com/jackminardi"><img src="../../images/social-icons/twitter.png"></a></li>
+    <li><a href="http://www.linkedin.com/in/jackminardi"><img src="/images/social-icons/linkedin.png"></a></li>
+    <li><a href="mailto:jack@minardi.org"><img src="../../images/social-icons/mail.png"></a></li>
+    <li><a href="../../feeds/all.rss.xml"><img src="../../images/social-icons/rss.png"></a></li>
+</ul>
+        <nav>
+            <ul>
+                <li><a href="../../">home ::</li>
+                <li><a href="../../projects">projects ::</li>
+                <li><a href="../../raspberry_pi">raspberry_pi ::</li>
+                <li><a href="../../software">software ::</li>
+                <li><a href="../../talks">talks</li>
             </ul>
-            <nav>
-                <ul>
-                        <li><a href="../../">home</a> ::</li>
-                        <li><a href="../../talks">talks</a> ::</li>
-                    <li><a href="../../projects">projects</a> ::</li>
-                    <li><a href="../../raspberry_pi">raspberry_pi</a> ::</li>
-                    <li><a href="../../software">software</a></li>
-                </ul>
-            </nav>
-        </footer>
+        </nav>
 
         
 <header>
@@ -49,7 +46,7 @@
 with the Raspberry Pi. I decided to build a small car that could be
 controlled with my phone's accelerometer.</p>
 <p>Here is a picture of the fully assembled car:</p>
-<p><img src='/static/images/toycar/assembled.jpg' width=600></p>
+<p><img src='/images/toycar/assembled.jpg' width=600></p>
 <p>And here is a quick video of the operation:</p>
 <iframe width="600" height="450" src="//www.youtube.com/embed/tfuv-B1X3ck" frameborder="0" allowfullscreen></iframe>
 
@@ -58,25 +55,25 @@ that streams the accelerometer data from the phone to the pi over a simple
 socket.  The pi then uses this data to drive the DC motor and the servo motor.
 Tilting the phone to control the car feels very natural.</p>
 <p>In this pic you can see the wifi dongle I've used:</p>
-<p><img src='/static/images/toycar/raspberrypi.jpg' width=600></p>
+<p><img src='/images/toycar/raspberrypi.jpg' width=600></p>
 <p>I am using Adafruit <a href="http://learn.adafruit.com/adafruit-raspberry-pi-educational-linux-distro/occidentalis-v0-dot-2">Occidental
 v0.2</a>
 as my OS because it has support for my wifi dongle. It also makes some hardware
 interaction easier and comes pre-installed with a few good python libraries.</p>
 <p>Here is a picture of the breadboard:</p>
-<p><img src='/static/images/toycar/breadboard.jpg' width=600></p>
+<p><img src='/images/toycar/breadboard.jpg' width=600></p>
 <p>I am using the
 <a href="http://www.mouser.com/ProductDetail/Texas-Instruments/L293DNE/?qs=sGAEpiMZZMtYFXwiBRPs0wSafWlCmJbc">L293DNE</a>
 hbridge chip for DC motor control. The two black wires you see coming off the
 board connect to the motor.</p>
 <p>In this pic is the battery pack I am using to power the pi:</p>
-<p><img src='/static/images/toycar/charger.jpg' width=600></p>
+<p><img src='/images/toycar/charger.jpg' width=600></p>
 <p>I purchased it on amazon
 <a href="http://www.amazon.com/PowerGen-External-Blackberry-Sensation-Thunderbolt/dp/B005VBNYDS">here</a>.</p>
 <p>Here is a pic of the battery pack I am using for the DC motor:</p>
-<p><img src='/static/images/toycar/batterypack.jpg' width=600></p>
+<p><img src='/images/toycar/batterypack.jpg' width=600></p>
 <p>Here is a closeup of the steering servo:</p>
-<p><img src='/static/images/toycar/servo.jpg' width=600></p>
+<p><img src='/images/toycar/servo.jpg' width=600></p>
 <p>It is an <a href="http://www.servocity.com/html/hs-55_sub-micro.html">HS-55</a> and I
 power it directly from the pi's 5v rail. To control it I use the <a href="https://github.com/richardghirst/PiBits">servoblaster
 kernal module</a> and my own servo
@@ -87,16 +84,15 @@ control library <a href="https://github.com/jminardi/RobotBrain">RobotBrain</a><
         <footer>
             <nav>
                 <ul>
-                        <li><a href="../../">home</a> ::</li>
-                        <li><a href="../../talks">talks</a> ::</li>
-                    <li><a href="../../projects">projects</a> ::</li>
-                    <li><a href="../../raspberry_pi">raspberry_pi</a> ::</li>
-                    <li><a href="../../software">software</a></li>
+                    <li><a href="../../">home ::</li>
+                    <li><a href="../../projects">projects ::</li>
+                    <li><a href="../../raspberry_pi">raspberry_pi ::</li>
+                    <li><a href="../../software">software ::</li>
+                    <li><a href="../../talks">talks</li>
                 </ul>
+                <p id="credit"><a href="http://docs.getpelican.com/">Powered by Pelican</a> |
+                <a href="http://github.com/jminardi/jminardi.github.io">Hosted on Github</a></p>
             </nav>
-            <p id="theme-credit"><a href="http://docs.getpelican.com/">Powered by Pelican</a>
-            | <a href="http://github.com/jminardi/jminardi.github.io">Hosted on Github</a></p>
-            
         </footer>
 
     <script type="text/javascript">

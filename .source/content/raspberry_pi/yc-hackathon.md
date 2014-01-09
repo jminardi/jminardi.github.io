@@ -19,7 +19,7 @@ a physical object.
 
 Here is a picture of the completed glove:
 
-<img src='/static/images/hackathon/glove.jpg' width=600>
+<img src='/images/hackathon/glove.jpg' width=600>
 
 A device like this could be used for gaming, surgical assistance, or a number
 of other augmented reality applications. I have been interested in expanding
@@ -35,7 +35,7 @@ the servo is actuated it pulls back on the twine holding the fingers open.
 Through this process we are able to simulate the resistive force of an object
 holding the wearers hand open.
 
-<img src='/static/images/hackathon/diagram.jpg' width=600>
+<img src='/images/hackathon/diagram.jpg' width=600>
 
 _-Drawing by teammember Tom Sherlock_
 
@@ -46,7 +46,7 @@ object in your hand.
 
 The distance sensor used was a HC-SR04 Ping Sensor:
 
-<img src='/static/images/hackathon/hc-sr04.jpg' width=600>
+<img src='/images/hackathon/hc-sr04.jpg' width=600>
 
 Hardware I/O
 ------------
@@ -87,6 +87,6 @@ to do and what your sensors are seeing. If you have ever tried doing hardware
 control in a lower level language, you know just how hard that can be, and as
 you can see, how easy Python makes it.
 
-<img src='/static/images/hackathon/team.jpg' width=600>
+<img src='/images/hackathon/team.jpg' width=600>
 
 _The team after our victory_

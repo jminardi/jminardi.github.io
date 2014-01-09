@@ -82,7 +82,7 @@ process. To add the thumb drive select "Add Folder" and navigate to
 `/media/BTSync`. You will need to generate a secret as this is the first time
 you are adding the folder.
 
-<img src='/static/images/btsync-web-interface.png' id='borderless'>
+<img src='/images/btsync-web-interface.png' id='borderless'>
 
 ![Add Folfer](|filename|/images/add-folder.png)
 

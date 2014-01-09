@@ -19,25 +19,22 @@
 </head>
 
 <body>
-
-        <footer>
-            <ul id="social">
-                <li><a href="https://github.com/jminardi"><img src="../images/social-icons/github.png"></a></li>
-                <li><a href="http://www.twitter.com/jackminardi"><img src="../images/social-icons/twitter.png"></a></li>
-                <li><a href="http://www.linkedin.com/in/jackminardi"><img src="/images/social-icons/linkedin.png"></a></li>
-                <li><a href="mailto:jack@minardi.org"><img src="../images/social-icons/mail.png"></a></li>
-                <li><a href="../feeds/all.rss.xml"><img src="../images/social-icons/rss.png"></a></li>
+<ul id="social">
+    <li><a href="https://github.com/jminardi"><img src="../images/social-icons/github.png"></a></li>
+    <li><a href="http://www.twitter.com/jackminardi"><img src="../images/social-icons/twitter.png"></a></li>
+    <li><a href="http://www.linkedin.com/in/jackminardi"><img src="/images/social-icons/linkedin.png"></a></li>
+    <li><a href="mailto:jack@minardi.org"><img src="../images/social-icons/mail.png"></a></li>
+    <li><a href="../feeds/all.rss.xml"><img src="../images/social-icons/rss.png"></a></li>
+</ul>
+        <nav>
+            <ul>
+                <li><a href="../">home ::</li>
+                <li><a href="../projects">projects ::</li>
+                <li><a href="../raspberry_pi">raspberry_pi ::</li>
+                <li><a href="../software">software ::</li>
+                <li><a href="../talks">talks</li>
             </ul>
-            <nav>
-                <ul>
-                        <li><a href="../">home</a> ::</li>
-                        <li><a href="../talks">talks</a> ::</li>
-                    <li><a href="../projects">projects</a> ::</li>
-                    <li><a href="../raspberry_pi">raspberry_pi</a> ::</li>
-                    <li><a href="../software">software</a></li>
-                </ul>
-            </nav>
-        </footer>
+        </nav>
 
         
         
@@ -81,11 +78,11 @@ screw. Once this was done I was able to pry the two covers apart using a flat
 head screwdriver. With the plastic gone, you can see the simple through-hole
 circuit board. See below for a picture of the front and back.  (Ignore the
 wires for now, I forgot to take a picture before I soldered them on.)</p>
-<p><a href='/static/images/lamp/front.jpg', id='borderless'>
-<img src='/static/images/lamp/front.jpg' width=280>
+<p><a href='/images/lamp/front.jpg', id='borderless'>
+<img src='/images/lamp/front.jpg' width=280>
 </a>
-<a href='/static/images/lamp/back.jpg', id='borderless'>
-<img src='/static/images/lamp/back.jpg' width=280>
+<a href='/images/lamp/back.jpg', id='borderless'>
+<img src='/images/lamp/back.jpg' width=280>
 </a></p>
 <p>As you can see in the first picture, there are two rows of buttons - an on and
 off button for each of the three outlets. Our goal is to control those buttons
@@ -130,8 +127,8 @@ see this ground connection in the finished photo below.</p>
 <p>Now all we have to do is connect a GPIO pin from the Pi to the base of each
 transistor. Here I am using GPIO pins 18 and 23. You can see a photo of this
 whole setup below.</p>
-<p><a href='/static/images/lamp/finished.jpg', id='borderless'>
-<img src='/static/images/lamp/finished.jpg' width=550>
+<p><a href='/images/lamp/finished.jpg', id='borderless'>
+<img src='/images/lamp/finished.jpg' width=550>
 </a></p>
 <h2>Software</h2>
 <p>The next step is to use Flask to expose our new circuit to the internet. I will
@@ -228,8 +225,8 @@ returns. The <code>update_lamp()</code> function checks for one of three states 
 
 <p>This is the template that is rendered by the above Flask function. When
 rendered it looks like this:</p>
-<p><a href='/static/images/lamp/screenshot.png', id='borderless'>
-<img src='/static/images/lamp/screenshot.png' id='borderless' width=550>
+<p><a href='/images/lamp/screenshot.png', id='borderless'>
+<img src='/images/lamp/screenshot.png' id='borderless' width=550>
 </a></p>
 <p>To start the server simply run the script with root privileges (GPIO access
 needs root):</p>
@@ -287,16 +284,15 @@ love to hear about it! You can reach me on twitter
         <footer>
             <nav>
                 <ul>
-                        <li><a href="../">home</a> ::</li>
-                        <li><a href="../talks">talks</a> ::</li>
-                    <li><a href="../projects">projects</a> ::</li>
-                    <li><a href="../raspberry_pi">raspberry_pi</a> ::</li>
-                    <li><a href="../software">software</a></li>
+                    <li><a href="../">home ::</li>
+                    <li><a href="../projects">projects ::</li>
+                    <li><a href="../raspberry_pi">raspberry_pi ::</li>
+                    <li><a href="../software">software ::</li>
+                    <li><a href="../talks">talks</li>
                 </ul>
+                <p id="credit"><a href="http://docs.getpelican.com/">Powered by Pelican</a> |
+                <a href="http://github.com/jminardi/jminardi.github.io">Hosted on Github</a></p>
             </nav>
-            <p id="theme-credit"><a href="http://docs.getpelican.com/">Powered by Pelican</a>
-            | <a href="http://github.com/jminardi/jminardi.github.io">Hosted on Github</a></p>
-            
         </footer>
 
     <script type="text/javascript">

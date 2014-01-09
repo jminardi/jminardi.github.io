@@ -1,8 +1,5 @@
 title: raspberry_pi
-URL: raspberry_pi
-save_as: raspberry_pi/index.html
 template: custom_category
-ignore_in_nav: True
 
 The Raspberry Pi is a cheap, credit-card sized computer. It runs a full linux
 operating system, so you can program in most any language that feels

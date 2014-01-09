@@ -63,14 +63,14 @@ back. I also soldered a couple of header pins to make it easier for me to
 connect power and signal to the board. See below for photos of the soldered 
 pads and header pins:
 
-<a href='/static/images/gh-display/shorted-pads.jpg', id='borderless'>
-<img src='/static/images/gh-display/shorted-pads.jpg' id='borderless' width=400>
+<a href='/images/gh-display/shorted-pads.jpg', id='borderless'>
+<img src='/images/gh-display/shorted-pads.jpg' id='borderless' width=400>
 </a>
 
 _Connecting these pads lets me operate the TiM board in "serial mode"._
 
-<a href='/static/images/gh-display/header-pins.jpg', id='borderless'>
-<img src='/static/images/gh-display/header-pins.jpg' id='borderless' width=400>
+<a href='/images/gh-display/header-pins.jpg', id='borderless'>
+<img src='/images/gh-display/header-pins.jpg' id='borderless' width=400>
 </a>
 
 _I soldered on some header pins to make connections easier._

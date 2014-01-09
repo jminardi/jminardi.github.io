@@ -19,25 +19,22 @@
 </head>
 
 <body>
-
-        <footer>
-            <ul id="social">
-                <li><a href="https://github.com/jminardi"><img src="../../images/social-icons/github.png"></a></li>
-                <li><a href="http://www.twitter.com/jackminardi"><img src="../../images/social-icons/twitter.png"></a></li>
-                <li><a href="http://www.linkedin.com/in/jackminardi"><img src="/images/social-icons/linkedin.png"></a></li>
-                <li><a href="mailto:jack@minardi.org"><img src="../../images/social-icons/mail.png"></a></li>
-                <li><a href="../../feeds/all.rss.xml"><img src="../../images/social-icons/rss.png"></a></li>
+<ul id="social">
+    <li><a href="https://github.com/jminardi"><img src="../../images/social-icons/github.png"></a></li>
+    <li><a href="http://www.twitter.com/jackminardi"><img src="../../images/social-icons/twitter.png"></a></li>
+    <li><a href="http://www.linkedin.com/in/jackminardi"><img src="/images/social-icons/linkedin.png"></a></li>
+    <li><a href="mailto:jack@minardi.org"><img src="../../images/social-icons/mail.png"></a></li>
+    <li><a href="../../feeds/all.rss.xml"><img src="../../images/social-icons/rss.png"></a></li>
+</ul>
+        <nav>
+            <ul>
+                <li><a href="../../">home ::</li>
+                <li><a href="../../projects">projects ::</li>
+                <li><a href="../../raspberry_pi">raspberry_pi ::</li>
+                <li><a href="../../software">software ::</li>
+                <li><a href="../../talks">talks</li>
             </ul>
-            <nav>
-                <ul>
-                        <li><a href="../../">home</a> ::</li>
-                        <li><a href="../../talks">talks</a> ::</li>
-                    <li><a href="../../projects">projects</a> ::</li>
-                    <li><a href="../../raspberry_pi">raspberry_pi</a> ::</li>
-                    <li><a href="../../software">software</a></li>
-                </ul>
-            </nav>
-        </footer>
+        </nav>
 
         
 <header>
@@ -141,13 +138,13 @@ diamond is defines by its vertices below.</p>
 
 <h2>Results</h2>
 <p>Two of the diamonds above produce the following 3D volume:</p>
-<p><img src='/static/images/pyramid.gif' id='borderless' width=500></p>
+<p><img src='/images/pyramid.gif' id='borderless' width=500></p>
 <p><em>Stereoscopic image, cross your eyes to view.
 (<a href="http://www.neilcreek.com/2008/02/28/how-to-see-3d-photos/">tutorial</a>)</em></p>
 <p>So it works for simple shadows and objects! I wanted to try something a little
 more difficult, so I decided to test the algorithms on my (dead) bonsai tree.</p>
-<p><a href='/static/images/bonsai.jpg', id='borderless'>
-<img src='/static/images/bonsai.jpg' id='borderless' width=400>
+<p><a href='/images/bonsai.jpg', id='borderless'>
+<img src='/images/bonsai.jpg' id='borderless' width=400>
 </a></p>
 <p>I took four photographs at (hopefully) 45 degree increments. I then
 wrote a quick <a href="https://github.com/jminardi/volume-from-shadow/blob/master/selection_plot.py">tool</a>
@@ -157,8 +154,8 @@ below.</p>
 <p><img alt="tree photos" src="../../images/tree-photos.png" /></p>
 <p>Running the 4 polygons above through the function produced the following point
 cloud:</p>
-<p><a href='/static/images/bonsai-large.gif', id='borderless'>
-<img src='/static/images/bonsai-small.gif' id='borderless' width=600>
+<p><a href='/images/bonsai-large.gif', id='borderless'>
+<img src='/images/bonsai-small.gif' id='borderless' width=600>
 </a></p>
 <p><em>Click for high res GIF. Stereoscopic image, cross your eyes to view.</em></p>
 <h2>Conclusion</h2>
@@ -187,16 +184,15 @@ where you can find links to similar research.</p>
         <footer>
             <nav>
                 <ul>
-                        <li><a href="../../">home</a> ::</li>
-                        <li><a href="../../talks">talks</a> ::</li>
-                    <li><a href="../../projects">projects</a> ::</li>
-                    <li><a href="../../raspberry_pi">raspberry_pi</a> ::</li>
-                    <li><a href="../../software">software</a></li>
+                    <li><a href="../../">home ::</li>
+                    <li><a href="../../projects">projects ::</li>
+                    <li><a href="../../raspberry_pi">raspberry_pi ::</li>
+                    <li><a href="../../software">software ::</li>
+                    <li><a href="../../talks">talks</li>
                 </ul>
+                <p id="credit"><a href="http://docs.getpelican.com/">Powered by Pelican</a> |
+                <a href="http://github.com/jminardi/jminardi.github.io">Hosted on Github</a></p>
             </nav>
-            <p id="theme-credit"><a href="http://docs.getpelican.com/">Powered by Pelican</a>
-            | <a href="http://github.com/jminardi/jminardi.github.io">Hosted on Github</a></p>
-            
         </footer>
 
     <script type="text/javascript">

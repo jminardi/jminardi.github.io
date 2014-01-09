@@ -19,25 +19,22 @@
 </head>
 
 <body>
-
-        <footer>
-            <ul id="social">
-                <li><a href="https://github.com/jminardi"><img src="../../images/social-icons/github.png"></a></li>
-                <li><a href="http://www.twitter.com/jackminardi"><img src="../../images/social-icons/twitter.png"></a></li>
-                <li><a href="http://www.linkedin.com/in/jackminardi"><img src="/images/social-icons/linkedin.png"></a></li>
-                <li><a href="mailto:jack@minardi.org"><img src="../../images/social-icons/mail.png"></a></li>
-                <li><a href="../../feeds/all.rss.xml"><img src="../../images/social-icons/rss.png"></a></li>
+<ul id="social">
+    <li><a href="https://github.com/jminardi"><img src="../../images/social-icons/github.png"></a></li>
+    <li><a href="http://www.twitter.com/jackminardi"><img src="../../images/social-icons/twitter.png"></a></li>
+    <li><a href="http://www.linkedin.com/in/jackminardi"><img src="/images/social-icons/linkedin.png"></a></li>
+    <li><a href="mailto:jack@minardi.org"><img src="../../images/social-icons/mail.png"></a></li>
+    <li><a href="../../feeds/all.rss.xml"><img src="../../images/social-icons/rss.png"></a></li>
+</ul>
+        <nav>
+            <ul>
+                <li><a href="../../">home ::</li>
+                <li><a href="../../projects">projects ::</li>
+                <li><a href="../../raspberry_pi">raspberry_pi ::</li>
+                <li><a href="../../software">software ::</li>
+                <li><a href="../../talks">talks</li>
             </ul>
-            <nav>
-                <ul>
-                        <li><a href="../../">home</a> ::</li>
-                        <li><a href="../../talks">talks</a> ::</li>
-                    <li><a href="../../projects">projects</a> ::</li>
-                    <li><a href="../../raspberry_pi">raspberry_pi</a> ::</li>
-                    <li><a href="../../software">software</a></li>
-                </ul>
-            </nav>
-        </footer>
+        </nav>
 
         
 <header>
@@ -57,7 +54,7 @@ prototype hardware device. For our entry, my team built a wearable force
 feedback glove. When worn, the glove is able to simulate the feeling of holding
 a physical object.</p>
 <p>Here is a picture of the completed glove:</p>
-<p><img src='/static/images/hackathon/glove.jpg' width=600></p>
+<p><img src='/images/hackathon/glove.jpg' width=600></p>
 <p>A device like this could be used for gaming, surgical assistance, or a number
 of other augmented reality applications. I have been interested in expanding
 the human-computer interface for a while, and this project allowed me to open
@@ -69,14 +66,14 @@ is connected to a platform which is connected to the back of the glove. When
 the servo is actuated it pulls back on the twine holding the fingers open.
 Through this process we are able to simulate the resistive force of an object
 holding the wearers hand open.</p>
-<p><img src='/static/images/hackathon/diagram.jpg' width=600></p>
+<p><img src='/images/hackathon/diagram.jpg' width=600></p>
 <p><em>-Drawing by teammember Tom Sherlock</em></p>
 <p>For the demo at the competition, we used a distance sensor to set the hand
 position. The closer your hand was to the distance sensor, the more your
 fingers were pulled open. This simulated the feeling of squeezing a virtual
 object in your hand.</p>
 <p>The distance sensor used was a HC-SR04 Ping Sensor:</p>
-<p><img src='/static/images/hackathon/hc-sr04.jpg' width=600></p>
+<p><img src='/images/hackathon/hc-sr04.jpg' width=600></p>
 <h2>Hardware I/O</h2>
 <p>To control servos and read from sensors usually you use GPIO pins. In our case
 we used the GPIO pins on a Raspberry Pi. If you would like to know more about
@@ -107,23 +104,22 @@ libraries you are able to reason at a high level about what you wanted your hard
 to do and what your sensors are seeing. If you have ever tried doing hardware
 control in a lower level language, you know just how hard that can be, and as
 you can see, how easy Python makes it.</p>
-<p><img src='/static/images/hackathon/team.jpg' width=600></p>
+<p><img src='/images/hackathon/team.jpg' width=600></p>
 <p><em>The team after our victory</em></p>
 </article>
 
         <footer>
             <nav>
                 <ul>
-                        <li><a href="../../">home</a> ::</li>
-                        <li><a href="../../talks">talks</a> ::</li>
-                    <li><a href="../../projects">projects</a> ::</li>
-                    <li><a href="../../raspberry_pi">raspberry_pi</a> ::</li>
-                    <li><a href="../../software">software</a></li>
+                    <li><a href="../../">home ::</li>
+                    <li><a href="../../projects">projects ::</li>
+                    <li><a href="../../raspberry_pi">raspberry_pi ::</li>
+                    <li><a href="../../software">software ::</li>
+                    <li><a href="../../talks">talks</li>
                 </ul>
+                <p id="credit"><a href="http://docs.getpelican.com/">Powered by Pelican</a> |
+                <a href="http://github.com/jminardi/jminardi.github.io">Hosted on Github</a></p>
             </nav>
-            <p id="theme-credit"><a href="http://docs.getpelican.com/">Powered by Pelican</a>
-            | <a href="http://github.com/jminardi/jminardi.github.io">Hosted on Github</a></p>
-            
         </footer>
 
     <script type="text/javascript">

@@ -149,7 +149,7 @@ header a#page-title {
 }
 
 /* line 121, ../../compass/src/main.scss */
-footer {
+nav {
   background: #fff;
   color: #666;
   font-family: helvetica, sans-serif;
@@ -158,20 +158,20 @@ footer {
   margin-left: -40px;
 }
 
-#theme-credit a {
+#credit a {
     color: #bbb;
 }
 /* line 128, ../../compass/src/main.scss */
-footer a {
+nav a {
   border-bottom: none;
   color: #444;
 }
 /* line 132, ../../compass/src/main.scss */
-footer li {
+nav li {
   display: inline;
 }
 /* line 135, ../../compass/src/main.scss */
-footer p {
+nav p {
   text-align: right;
 }
 
@@ -179,10 +179,13 @@ footer p {
     position: fixed;
     top: 33px;
     left: -27px;
-   padding: 10px;
+    padding: 10px;
    -webkit-transition: left .2s;
 }
 
+#social a {
+    border: none;
+}
 
 #social:hover {
     left: 0px;

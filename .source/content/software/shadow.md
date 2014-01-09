@@ -110,7 +110,7 @@ Results
 
 Two of the diamonds above produce the following 3D volume:
 
-<img src='/static/images/pyramid.gif' id='borderless' width=500>
+<img src='/images/pyramid.gif' id='borderless' width=500>
 
 _Stereoscopic image, cross your eyes to view.
 ([tutorial](http://www.neilcreek.com/2008/02/28/how-to-see-3d-photos/))_
@@ -118,8 +118,8 @@ _Stereoscopic image, cross your eyes to view.
 So it works for simple shadows and objects! I wanted to try something a little
 more difficult, so I decided to test the algorithms on my (dead) bonsai tree.
 
-<a href='/static/images/bonsai.jpg', id='borderless'>
-<img src='/static/images/bonsai.jpg' id='borderless' width=400>
+<a href='/images/bonsai.jpg', id='borderless'>
+<img src='/images/bonsai.jpg' id='borderless' width=400>
 </a>
 
 I took four photographs at (hopefully) 45 degree increments. I then
@@ -133,8 +133,8 @@ below.
 Running the 4 polygons above through the function produced the following point
 cloud:
 
-<a href='/static/images/bonsai-large.gif', id='borderless'>
-<img src='/static/images/bonsai-small.gif' id='borderless' width=600>
+<a href='/images/bonsai-large.gif', id='borderless'>
+<img src='/images/bonsai-small.gif' id='borderless' width=600>
 </a>
 
 _Click for high res GIF. Stereoscopic image, cross your eyes to view._

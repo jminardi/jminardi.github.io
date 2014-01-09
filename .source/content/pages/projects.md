@@ -1,5 +1,4 @@
 title: projects
-ignore_in_nav: True
 
 ## Tactilous: A Force-Feeback Haptic Glove
 ![](|filename|/images/project-banners/glove.png)

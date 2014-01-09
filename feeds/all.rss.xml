@@ -33,11 +33,11 @@ screw. Once this was done I was able to pry the two covers apart using a flat
 head screwdriver. With the plastic gone, you can see the simple through-hole
 circuit board. See below for a picture of the front and back.  (Ignore the
 wires for now, I forgot to take a picture before I soldered them on.)&lt;/p&gt;
-&lt;p&gt;&lt;a href='/static/images/lamp/front.jpg', id='borderless'&gt;
-&lt;img src='/static/images/lamp/front.jpg' width=280&gt;
+&lt;p&gt;&lt;a href='/images/lamp/front.jpg', id='borderless'&gt;
+&lt;img src='/images/lamp/front.jpg' width=280&gt;
 &lt;/a&gt;
-&lt;a href='/static/images/lamp/back.jpg', id='borderless'&gt;
-&lt;img src='/static/images/lamp/back.jpg' width=280&gt;
+&lt;a href='/images/lamp/back.jpg', id='borderless'&gt;
+&lt;img src='/images/lamp/back.jpg' width=280&gt;
 &lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;As you can see in the first picture, there are two rows of buttons - an on and
 off button for each of the three outlets. Our goal is to control those buttons
@@ -82,8 +82,8 @@ see this ground connection in the finished photo below.&lt;/p&gt;
 &lt;p&gt;Now all we have to do is connect a GPIO pin from the Pi to the base of each
 transistor. Here I am using GPIO pins 18 and 23. You can see a photo of this
 whole setup below.&lt;/p&gt;
-&lt;p&gt;&lt;a href='/static/images/lamp/finished.jpg', id='borderless'&gt;
-&lt;img src='/static/images/lamp/finished.jpg' width=550&gt;
+&lt;p&gt;&lt;a href='/images/lamp/finished.jpg', id='borderless'&gt;
+&lt;img src='/images/lamp/finished.jpg' width=550&gt;
 &lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Software&lt;/h2&gt;
 &lt;p&gt;The next step is to use Flask to expose our new circuit to the internet. I will
@@ -180,8 +180,8 @@ returns. The &lt;code&gt;update_lamp()&lt;/code&gt; function checks for one of t
 
 &lt;p&gt;This is the template that is rendered by the above Flask function. When
 rendered it looks like this:&lt;/p&gt;
-&lt;p&gt;&lt;a href='/static/images/lamp/screenshot.png', id='borderless'&gt;
-&lt;img src='/static/images/lamp/screenshot.png' id='borderless' width=550&gt;
+&lt;p&gt;&lt;a href='/images/lamp/screenshot.png', id='borderless'&gt;
+&lt;img src='/images/lamp/screenshot.png' id='borderless' width=550&gt;
 &lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;To start the server simply run the script with root privileges (GPIO access
 needs root):&lt;/p&gt;
@@ -242,12 +242,12 @@ the &lt;a href="https://docs.google.com/a/minardi.org/document/d/1szTSpMLkoYj53_
 back. I also soldered a couple of header pins to make it easier for me to
 connect power and signal to the board. See below for photos of the soldered 
 pads and header pins:&lt;/p&gt;
-&lt;p&gt;&lt;a href='/static/images/gh-display/shorted-pads.jpg', id='borderless'&gt;
-&lt;img src='/static/images/gh-display/shorted-pads.jpg' id='borderless' width=400&gt;
+&lt;p&gt;&lt;a href='/images/gh-display/shorted-pads.jpg', id='borderless'&gt;
+&lt;img src='/images/gh-display/shorted-pads.jpg' id='borderless' width=400&gt;
 &lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Connecting these pads lets me operate the TiM board in "serial mode".&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href='/static/images/gh-display/header-pins.jpg', id='borderless'&gt;
-&lt;img src='/static/images/gh-display/header-pins.jpg' id='borderless' width=400&gt;
+&lt;p&gt;&lt;a href='/images/gh-display/header-pins.jpg', id='borderless'&gt;
+&lt;img src='/images/gh-display/header-pins.jpg' id='borderless' width=400&gt;
 &lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;I soldered on some header pins to make connections easier.&lt;/em&gt;&lt;/p&gt;
 &lt;h2&gt;The Internet of Things with an Electric Imp&lt;/h2&gt;
@@ -8151,13 +8151,13 @@ diamond is defines by its vertices below.&lt;/p&gt;
 
 &lt;h2&gt;Results&lt;/h2&gt;
 &lt;p&gt;Two of the diamonds above produce the following 3D volume:&lt;/p&gt;
-&lt;p&gt;&lt;img src='/static/images/pyramid.gif' id='borderless' width=500&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='/images/pyramid.gif' id='borderless' width=500&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Stereoscopic image, cross your eyes to view.
 (&lt;a href="http://www.neilcreek.com/2008/02/28/how-to-see-3d-photos/"&gt;tutorial&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;So it works for simple shadows and objects! I wanted to try something a little
 more difficult, so I decided to test the algorithms on my (dead) bonsai tree.&lt;/p&gt;
-&lt;p&gt;&lt;a href='/static/images/bonsai.jpg', id='borderless'&gt;
-&lt;img src='/static/images/bonsai.jpg' id='borderless' width=400&gt;
+&lt;p&gt;&lt;a href='/images/bonsai.jpg', id='borderless'&gt;
+&lt;img src='/images/bonsai.jpg' id='borderless' width=400&gt;
 &lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I took four photographs at (hopefully) 45 degree increments. I then
 wrote a quick &lt;a href="https://github.com/jminardi/volume-from-shadow/blob/master/selection_plot.py"&gt;tool&lt;/a&gt;
@@ -8167,8 +8167,8 @@ below.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="tree photos" src="http://jack.minardi.org/images/tree-photos.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Running the 4 polygons above through the function produced the following point
 cloud:&lt;/p&gt;
-&lt;p&gt;&lt;a href='/static/images/bonsai-large.gif', id='borderless'&gt;
-&lt;img src='/static/images/bonsai-small.gif' id='borderless' width=600&gt;
+&lt;p&gt;&lt;a href='/images/bonsai-large.gif', id='borderless'&gt;
+&lt;img src='/images/bonsai-small.gif' id='borderless' width=600&gt;
 &lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Click for high res GIF. Stereoscopic image, cross your eyes to view.&lt;/em&gt;&lt;/p&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
@@ -8261,7 +8261,7 @@ sudo ./btsync  &lt;span class="c"&gt;# can be killed with `sudo killall btsync`&
 process. To add the thumb drive select "Add Folder" and navigate to
 &lt;code&gt;/media/BTSync&lt;/code&gt;. You will need to generate a secret as this is the first time
 you are adding the folder.&lt;/p&gt;
-&lt;p&gt;&lt;img src='/static/images/btsync-web-interface.png' id='borderless'&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='/images/btsync-web-interface.png' id='borderless'&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Add Folfer" src="http://jack.minardi.org/images/add-folder.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;Other Devices&lt;/h2&gt;
 &lt;p&gt;Now go download the
@@ -8566,7 +8566,7 @@ prototype hardware device. For our entry, my team built a wearable force
 feedback glove. When worn, the glove is able to simulate the feeling of holding
 a physical object.&lt;/p&gt;
 &lt;p&gt;Here is a picture of the completed glove:&lt;/p&gt;
-&lt;p&gt;&lt;img src='/static/images/hackathon/glove.jpg' width=600&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='/images/hackathon/glove.jpg' width=600&gt;&lt;/p&gt;
 &lt;p&gt;A device like this could be used for gaming, surgical assistance, or a number
 of other augmented reality applications. I have been interested in expanding
 the human-computer interface for a while, and this project allowed me to open
@@ -8578,14 +8578,14 @@ is connected to a platform which is connected to the back of the glove. When
 the servo is actuated it pulls back on the twine holding the fingers open.
 Through this process we are able to simulate the resistive force of an object
 holding the wearers hand open.&lt;/p&gt;
-&lt;p&gt;&lt;img src='/static/images/hackathon/diagram.jpg' width=600&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='/images/hackathon/diagram.jpg' width=600&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;-Drawing by teammember Tom Sherlock&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;For the demo at the competition, we used a distance sensor to set the hand
 position. The closer your hand was to the distance sensor, the more your
 fingers were pulled open. This simulated the feeling of squeezing a virtual
 object in your hand.&lt;/p&gt;
 &lt;p&gt;The distance sensor used was a HC-SR04 Ping Sensor:&lt;/p&gt;
-&lt;p&gt;&lt;img src='/static/images/hackathon/hc-sr04.jpg' width=600&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='/images/hackathon/hc-sr04.jpg' width=600&gt;&lt;/p&gt;
 &lt;h2&gt;Hardware I/O&lt;/h2&gt;
 &lt;p&gt;To control servos and read from sensors usually you use GPIO pins. In our case
 we used the GPIO pins on a Raspberry Pi. If you would like to know more about
@@ -8616,12 +8616,12 @@ libraries you are able to reason at a high level about what you wanted your hard
 to do and what your sensors are seeing. If you have ever tried doing hardware
 control in a lower level language, you know just how hard that can be, and as
 you can see, how easy Python makes it.&lt;/p&gt;
-&lt;p&gt;&lt;img src='/static/images/hackathon/team.jpg' width=600&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='/images/hackathon/team.jpg' width=600&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;The team after our victory&lt;/em&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jack Minardi</dc:creator><pubDate>Tue, 05 Mar 2013 00:00:00 -0000</pubDate><guid>tag:jack.minardi.org,2013-03-05:raspberry_pi/ycombinator-hardware-hackathon</guid></item><item><title>Android Controlled Toy Car</title><link>http://jack.minardi.org/raspberry_pi/android-controlled-toy-car</link><description>&lt;p&gt;I wanted to build something fun that would introduce me to hardware control 
 with the Raspberry Pi. I decided to build a small car that could be
 controlled with my phone's accelerometer.&lt;/p&gt;
 &lt;p&gt;Here is a picture of the fully assembled car:&lt;/p&gt;
-&lt;p&gt;&lt;img src='/static/images/toycar/assembled.jpg' width=600&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='/images/toycar/assembled.jpg' width=600&gt;&lt;/p&gt;
 &lt;p&gt;And here is a quick video of the operation:&lt;/p&gt;
 &lt;iframe width="600" height="450" src="//www.youtube.com/embed/tfuv-B1X3ck" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
 
@@ -8630,25 +8630,25 @@ that streams the accelerometer data from the phone to the pi over a simple
 socket.  The pi then uses this data to drive the DC motor and the servo motor.
 Tilting the phone to control the car feels very natural.&lt;/p&gt;
 &lt;p&gt;In this pic you can see the wifi dongle I've used:&lt;/p&gt;
-&lt;p&gt;&lt;img src='/static/images/toycar/raspberrypi.jpg' width=600&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='/images/toycar/raspberrypi.jpg' width=600&gt;&lt;/p&gt;
 &lt;p&gt;I am using Adafruit &lt;a href="http://learn.adafruit.com/adafruit-raspberry-pi-educational-linux-distro/occidentalis-v0-dot-2"&gt;Occidental
 v0.2&lt;/a&gt;
 as my OS because it has support for my wifi dongle. It also makes some hardware
 interaction easier and comes pre-installed with a few good python libraries.&lt;/p&gt;
 &lt;p&gt;Here is a picture of the breadboard:&lt;/p&gt;
-&lt;p&gt;&lt;img src='/static/images/toycar/breadboard.jpg' width=600&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='/images/toycar/breadboard.jpg' width=600&gt;&lt;/p&gt;
 &lt;p&gt;I am using the
 &lt;a href="http://www.mouser.com/ProductDetail/Texas-Instruments/L293DNE/?qs=sGAEpiMZZMtYFXwiBRPs0wSafWlCmJbc"&gt;L293DNE&lt;/a&gt;
 hbridge chip for DC motor control. The two black wires you see coming off the
 board connect to the motor.&lt;/p&gt;
 &lt;p&gt;In this pic is the battery pack I am using to power the pi:&lt;/p&gt;
-&lt;p&gt;&lt;img src='/static/images/toycar/charger.jpg' width=600&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='/images/toycar/charger.jpg' width=600&gt;&lt;/p&gt;
 &lt;p&gt;I purchased it on amazon
 &lt;a href="http://www.amazon.com/PowerGen-External-Blackberry-Sensation-Thunderbolt/dp/B005VBNYDS"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Here is a pic of the battery pack I am using for the DC motor:&lt;/p&gt;
-&lt;p&gt;&lt;img src='/static/images/toycar/batterypack.jpg' width=600&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='/images/toycar/batterypack.jpg' width=600&gt;&lt;/p&gt;
 &lt;p&gt;Here is a closeup of the steering servo:&lt;/p&gt;
-&lt;p&gt;&lt;img src='/static/images/toycar/servo.jpg' width=600&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src='/images/toycar/servo.jpg' width=600&gt;&lt;/p&gt;
 &lt;p&gt;It is an &lt;a href="http://www.servocity.com/html/hs-55_sub-micro.html"&gt;HS-55&lt;/a&gt; and I
 power it directly from the pi's 5v rail. To control it I use the &lt;a href="https://github.com/richardghirst/PiBits"&gt;servoblaster
 kernal module&lt;/a&gt; and my own servo

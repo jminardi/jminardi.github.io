@@ -47,11 +47,11 @@ head screwdriver. With the plastic gone, you can see the simple through-hole
 circuit board. See below for a picture of the front and back.  (Ignore the
 wires for now, I forgot to take a picture before I soldered them on.)
 
-<a href='/static/images/lamp/front.jpg', id='borderless'>
-<img src='/static/images/lamp/front.jpg' width=280>
+<a href='/images/lamp/front.jpg', id='borderless'>
+<img src='/images/lamp/front.jpg' width=280>
 </a>
-<a href='/static/images/lamp/back.jpg', id='borderless'>
-<img src='/static/images/lamp/back.jpg' width=280>
+<a href='/images/lamp/back.jpg', id='borderless'>
+<img src='/images/lamp/back.jpg' width=280>
 </a>
 
 
@@ -114,8 +114,8 @@ Now all we have to do is connect a GPIO pin from the Pi to the base of each
 transistor. Here I am using GPIO pins 18 and 23. You can see a photo of this
 whole setup below.
 
-<a href='/static/images/lamp/finished.jpg', id='borderless'>
-<img src='/static/images/lamp/finished.jpg' width=550>
+<a href='/images/lamp/finished.jpg', id='borderless'>
+<img src='/images/lamp/finished.jpg' width=550>
 </a>
 
 ## Software
@@ -223,8 +223,8 @@ returns. The `update_lamp()` function checks for one of three states (`on`,
 This is the template that is rendered by the above Flask function. When
 rendered it looks like this:
 
-<a href='/static/images/lamp/screenshot.png', id='borderless'>
-<img src='/static/images/lamp/screenshot.png' id='borderless' width=550>
+<a href='/images/lamp/screenshot.png', id='borderless'>
+<img src='/images/lamp/screenshot.png' id='borderless' width=550>
 </a>
 
 To start the server simply run the script with root privileges (GPIO access
