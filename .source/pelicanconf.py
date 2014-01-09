@@ -16,7 +16,7 @@ PAGE_SAVE_AS = '{slug}/index.html'
 ARTICLE_URL = '{category}/{slug}'
 ARTICLE_SAVE_AS = '{category}/{slug}/index.html'
 CATEGORY_URL = '{slug}'
-CATEGORY_SAVE_AS = '{slug}/index.html'
+CATEGORY_SAVE_AS = None
 
 GOOGLE_ANALYTICS = 'UA-42321662-1'
 
