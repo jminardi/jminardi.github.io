@@ -5,7 +5,7 @@
         <meta charset="utf-8" />
         <link rel="stylesheet" href="../../theme/css/main.css" type="text/css" />
         <link href="../../" type="application/atom+xml" rel="alternate" title="jack.minardi.org ATOM Feed" />
-        
+
         <!--[if IE]>
                 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
@@ -22,32 +22,32 @@
 
         <footer>
             <ul id="social">
-                <li><a href="https://github.com/jminardi"><img src="../../static/images/github.png"></a></li>
-                <li><a href="http://www.twitter.com/jackminardi"><img src="../../static/images/twitter.png"></a></li>
-                <li><a href="http://www.linkedin.com/in/jackminardi"><img src="/static/images/linkedin.png"></a></li>
-                <li><a href="mailto:jack@minardi.org"><img src="../../static/images/mail.png"></a></li>
-                <li><a href="../../feeds/all.rss.xml"><img src="../../static/images/rss.png"></a></li>
+                <li><a href="https://github.com/jminardi"><img src="../../images/social-icons/github.png"></a></li>
+                <li><a href="http://www.twitter.com/jackminardi"><img src="../../images/social-icons/twitter.png"></a></li>
+                <li><a href="http://www.linkedin.com/in/jackminardi"><img src="/images/social-icons/linkedin.png"></a></li>
+                <li><a href="mailto:jack@minardi.org"><img src="../../images/social-icons/mail.png"></a></li>
+                <li><a href="../../feeds/all.rss.xml"><img src="../../images/social-icons/rss.png"></a></li>
             </ul>
             <nav>
                 <ul>
-                                                            <li><a href="../../">home</a> ::</li>
-                                                                                                                                                                                            <li><a href="../../talks">talks</a> ::</li>
-                                                                        <li><a href="../../projects">projects</a> ::</li>
-                                    <li><a href="../../raspberry_pi">raspberry_pi</a> ::</li>
-                                    <li><a href="../../software">software</a></li>
-                                </ul>
+                        <li><a href="../../">home</a> ::</li>
+                        <li><a href="../../talks">talks</a> ::</li>
+                    <li><a href="../../projects">projects</a> ::</li>
+                    <li><a href="../../raspberry_pi">raspberry_pi</a> ::</li>
+                    <li><a href="../../software">software</a></li>
+                </ul>
             </nav>
         </footer>
 
-                
+        
 <header>
     <h1><a href="../.." id="site-title">jack.minardi.org </a> :
         <a href="../../raspberry_pi/make-an-internet-controlled-lamp-with-a-raspberry-pi-and-flask" id="page-title">Make an Internet Controlled Lamp with a Raspberry Pi and Flask</a></h1>
-    <time datetime="2013-11-15T00:00:00">November 2013</time></header>
+<time datetime="2013-11-15T00:00:00">November 2013</time></header>
 <article>
     <h2>The Internet of Things.</h2>
 <p><a href="http://www.w3c.fr/les-francais-et-le-web-utilisation-et-supports/" id="borderless">
-<img alt="" src="../../static/images/lamp/devices.jpg" />
+<img alt="" src="../../images/lamp/devices.jpg" />
 </a></p>
 <p>For far too long humans having been hogging all the internet to themselves.  It
 is time to change that. Now that the future is here we can start connecting
@@ -98,7 +98,7 @@ switch) or does not conduct current (open switch). To close the switch and
 allow current to flow, this third control pin needs to be raised high. To open
 the circuit and stop current, the control pin should be set low. The circuit
 diagram symbol for transistors is shown below:</p>
-<p><img alt="" src="../../static/images/lamp/transistor.png" /></p>
+<p><img alt="" src="../../images/lamp/transistor.png" /></p>
 <p>The collector is where current should flow in and the emitter is where current
 should flow out. The base pin is the control pin I mentioned above, which is
 used to control the state of the transistor (conducting or not conducting). The
@@ -117,14 +117,14 @@ buttons are a part of.</p>
 going to connect up two of the buttons (on and off for outlet 1) but you can
 follow the pattern and connect up all six. In the picture below I've
 labeled the three places you will need to solder cabled to.</p>
-<p><img alt="" src="../../static/images/lamp/labeled.png" /></p>
+<p><img alt="" src="../../images/lamp/labeled.png" /></p>
 <p>Solder wires to the positions indicated above so it is easier to connect this
 remote to a breadboard. Once this is done connect the wires across a
 transistor using your breadboard. See below for a circuit diagram</p>
 <p>While not captured in this photo, you will also need to solder a wire to the
 ground terminal and connect that to the ground of the Raspberry Pi. You can 
 see this ground connection in the finished photo below.</p>
-<p><img alt="" src="../../static/images/lamp/diagram.png" /></p>
+<p><img alt="" src="../../images/lamp/diagram.png" /></p>
 <p>Now all we have to do is connect a GPIO pin from the Pi to the base of each
 transistor. Here I am using GPIO pins 18 and 23. You can see a photo of this
 whole setup below.</p>
@@ -253,12 +253,12 @@ love to hear about it! You can reach me on twitter
         <footer>
             <nav>
                 <ul>
-                                                            <li><a href="../../">home</a> ::</li>
-                                                                                                                                                                                            <li><a href="../../talks">talks</a> ::</li>
-                                                                        <li><a href="../../projects">projects</a> ::</li>
-                                    <li><a href="../../raspberry_pi">raspberry_pi</a> ::</li>
-                                    <li><a href="../../software">software</a></li>
-                                </ul>
+                        <li><a href="../../">home</a> ::</li>
+                        <li><a href="../../talks">talks</a> ::</li>
+                    <li><a href="../../projects">projects</a> ::</li>
+                    <li><a href="../../raspberry_pi">raspberry_pi</a> ::</li>
+                    <li><a href="../../software">software</a></li>
+                </ul>
             </nav>
             <p id="theme-credit"><a href="http://docs.getpelican.com/">Powered by Pelican</a>
             | <a href="http://github.com/jminardi/jminardi.github.io">Hosted on Github</a></p>

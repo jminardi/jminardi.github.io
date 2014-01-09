@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>jack.minardi.org</title><link>http://jack.minardi.org/</link><description></description><atom:link href="http://jack.minardi.org/feeds/all.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 15 Nov 2013 00:00:00 -0000</lastBuildDate><item><title>Make an Internet Controlled Lamp with a Raspberry Pi and Flask</title><link>http://jack.minardi.org/raspberry_pi/make-an-internet-controlled-lamp-with-a-raspberry-pi-and-flask</link><description>&lt;h2&gt;The Internet of Things.&lt;/h2&gt;
 &lt;p&gt;&lt;a href="http://www.w3c.fr/les-francais-et-le-web-utilisation-et-supports/" id="borderless"&gt;
-&lt;img alt="" src="http://jack.minardi.org/static/images/lamp/devices.jpg" /&gt;
+&lt;img alt="" src="http://jack.minardi.org/images/lamp/devices.jpg" /&gt;
 &lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;For far too long humans having been hogging all the internet to themselves.  It
 is time to change that. Now that the future is here we can start connecting
@@ -52,7 +52,7 @@ switch) or does not conduct current (open switch). To close the switch and
 allow current to flow, this third control pin needs to be raised high. To open
 the circuit and stop current, the control pin should be set low. The circuit
 diagram symbol for transistors is shown below:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="http://jack.minardi.org/static/images/lamp/transistor.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://jack.minardi.org/images/lamp/transistor.png" /&gt;&lt;/p&gt;
 &lt;p&gt;The collector is where current should flow in and the emitter is where current
 should flow out. The base pin is the control pin I mentioned above, which is
 used to control the state of the transistor (conducting or not conducting). The
@@ -71,14 +71,14 @@ buttons are a part of.&lt;/p&gt;
 going to connect up two of the buttons (on and off for outlet 1) but you can
 follow the pattern and connect up all six. In the picture below I've
 labeled the three places you will need to solder cabled to.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="http://jack.minardi.org/static/images/lamp/labeled.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://jack.minardi.org/images/lamp/labeled.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Solder wires to the positions indicated above so it is easier to connect this
 remote to a breadboard. Once this is done connect the wires across a
 transistor using your breadboard. See below for a circuit diagram&lt;/p&gt;
 &lt;p&gt;While not captured in this photo, you will also need to solder a wire to the
 ground terminal and connect that to the ground of the Raspberry Pi. You can 
 see this ground connection in the finished photo below.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="" src="http://jack.minardi.org/static/images/lamp/diagram.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="http://jack.minardi.org/images/lamp/diagram.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Now all we have to do is connect a GPIO pin from the Pi to the base of each
 transistor. Here I am using GPIO pins 18 and 23. You can see a photo of this
 whole setup below.&lt;/p&gt;
@@ -202,7 +202,7 @@ control the light from my homescreen.&lt;/p&gt;
 follow these instructions and connect one of your devices to the internet, I'd
 love to hear about it! You can reach me on twitter
 &lt;a href="http://www.twitter.com/jackminardi"&gt;@jackminardi&lt;/a&gt;.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jack Minardi</dc:creator><pubDate>Fri, 15 Nov 2013 00:00:00 -0000</pubDate><guid>tag:jack.minardi.org,2013-11-15:raspberry_pi/make-an-internet-controlled-lamp-with-a-raspberry-pi-and-flask</guid></item><item><title>Displaying Realtime Github Activity on a Full Color LED Matrix</title><link>http://jack.minardi.org/projects/displaying-realtime-github-activity-on-a-full-color-led-matrix</link><description>&lt;h2&gt;Overview&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="LED Matrix" src="http://jack.minardi.org/static/images/project-banners/gh-display.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="LED Matrix" src="http://jack.minardi.org/images/project-banners/gh-display.png" /&gt;&lt;/p&gt;
 &lt;p&gt;The goal of this project was to display real time activity from my companies
 Github feed. I used an RGB LED matrix to display information about the last 30
 events, including the username of whoever is responsible for the most recent
@@ -8056,7 +8056,7 @@ H374gZ8Z+OGHH374gZ8Z+OGHH374AfwfsHZLnAsXHn0AAAAASUVORK5CYII=
 &lt;p&gt;Follow the discussion on &lt;a href="https://news.ycombinator.com/item?id=6476723"&gt;Hacker News&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;This blog post was written entirely in an IPython Notebook. You can download the full notebook &lt;a href="http://nbviewer.ipython.org/urls/raw.github.com/jminardi/audio_fingerprinting/master/Computationalsynesthesia-JackMinardi.ipynb"&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jack Minardi</dc:creator><pubDate>Tue, 01 Oct 2013 00:00:00 -0000</pubDate><guid>tag:jack.minardi.org,2013-10-01:software/computational-synesthesia</guid></item><item><title>What's in a Shadow?</title><link>http://jack.minardi.org/software/whats-in-a-shadow</link><description>&lt;p&gt;&lt;a href='https://commons.wikimedia.org/wiki/File:Backlit_sphere_with_shadow.jpg' id='borderless'&gt;
-&lt;img alt="shadow header" src="http://jack.minardi.org/static/images/shadow-header.png" /&gt;
+&lt;img alt="shadow header" src="http://jack.minardi.org/images/shadow-header.png" /&gt;
 &lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;If you'd rather read python than english you can go straight to the code on github:
 https://github.com/jminardi/volume-from-shadow&lt;/p&gt;
@@ -8075,7 +8075,7 @@ Having the rays come in orthogonal to the surface allows me to ignore any
 perspective distortions like the &lt;a href="http://en.wikipedia.org/wiki/Keystone_effect"&gt;keystone
 effect&lt;/a&gt;. I've drawn up a simple
 diagram to explain what I am talking about.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="shadow diagram" src="http://jack.minardi.org/static/images/shadow-diagram.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="shadow diagram" src="http://jack.minardi.org/images/shadow-diagram.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Now imaging rotating that object and watching the shadow change on the wall.&lt;/p&gt;
 &lt;p&gt;These musings led to some python code that implements a sort of shadow
 back projection - recreating a 3D object from a series of shadows taken at
@@ -8164,7 +8164,7 @@ wrote a quick &lt;a href="https://github.com/jminardi/volume-from-shadow/blob/ma
 that allows me to click on an image to define a polygon. I used it to define
 the profile of each of the four images. You can see the images and profiles
 below.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="tree photos" src="http://jack.minardi.org/static/images/tree-photos.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="tree photos" src="http://jack.minardi.org/images/tree-photos.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Running the 4 polygons above through the function produced the following point
 cloud:&lt;/p&gt;
 &lt;p&gt;&lt;a href='/static/images/bonsai-large.gif', id='borderless'&gt;
@@ -8192,7 +8192,7 @@ python.&lt;/p&gt;
 https://github.com/jminardi/volume-from-shadow&lt;/p&gt;
 &lt;p&gt;Check out the discussion on &lt;a href="https://news.ycombinator.com/item?id=6122911"&gt;Hacker News&lt;/a&gt;
 where you can find links to similar research.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Jack Minardi</dc:creator><pubDate>Mon, 22 Jul 2013 00:00:00 -0000</pubDate><guid>tag:jack.minardi.org,2013-07-22:software/whats-in-a-shadow</guid></item><item><title>Replace Dropbox with BitTorrent Sync and a Raspberry Pi</title><link>http://jack.minardi.org/raspberry_pi/replace-dropbox-with-bittorrent-sync-and-a-raspberry-pi</link><description>&lt;h2&gt;Notes Everywhere&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="Messy Desk" src="http://jack.minardi.org/static/images/messy-desk.png" /&gt;
+&lt;p&gt;&lt;img alt="Messy Desk" src="http://jack.minardi.org/images/messy-desk.png" /&gt;
 &lt;a href="http://www.flickr.com/photos/jazzmasterson/278672002/"&gt;source&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I like to take long running notes, jotting down an idea here and there when
 one pops up. I never know which devices I will have with me, so I like to have
@@ -8262,7 +8262,7 @@ process. To add the thumb drive select "Add Folder" and navigate to
 &lt;code&gt;/media/BTSync&lt;/code&gt;. You will need to generate a secret as this is the first time
 you are adding the folder.&lt;/p&gt;
 &lt;p&gt;&lt;img src='/static/images/btsync-web-interface.png' id='borderless'&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Add Folfer" src="http://jack.minardi.org/static/images/add-folder.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Add Folfer" src="http://jack.minardi.org/images/add-folder.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;Other Devices&lt;/h2&gt;
 &lt;p&gt;Now go download the
 &lt;a href="https://play.google.com/store/apps/details?id=com.bittorrent.sync"&gt;Android app&lt;/a&gt;
@@ -8340,7 +8340,7 @@ and I will summarize the content here.&lt;/p&gt;
 lucky you will draw pictures on the screen. This is in contrast to physical
 computing which allows you as a programmer to work with data sensed in from
 the real world and to control devices that move in the real world.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Mars Rover" src="http://jack.minardi.org/static/images/mars-rover.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Mars Rover" src="http://jack.minardi.org/images/mars-rover.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;physical computing at work. (&lt;a href="http://www.flickr.com/photos/alpi-costerni/8148100978/sizes/m/in/photostream/"&gt;source&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt;
 &lt;h1&gt;Goal&lt;/h1&gt;
 &lt;p&gt;Use a Raspberry Pi to read in accelerometer value and to control a servo motor.&lt;/p&gt;
@@ -8387,7 +8387,7 @@ can calculate the appropriate resistance using the following equation:&lt;/p&gt;
 Once you've gathered up all your circuit elements (LED and resistor), build
 this circuit on a &lt;a href="http://eecs.vanderbilt.edu/courses/ee213/Breadboard.htm"&gt;bread
 board&lt;/a&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img alt="LED Circuit" src="http://jack.minardi.org/static/images/led-circuit.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="LED Circuit" src="http://jack.minardi.org/images/led-circuit.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;thats not so bad, is it?&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;The code is also pretty simple. But first you will need to install
 &lt;a href="code.google.com/p/raspberry-gpio-python/"&gt;RPi.GPIO&lt;/a&gt;. (It might come
@@ -8430,7 +8430,7 @@ The one I like is called &lt;a href="http://adafru.it/856"&gt;MCP3008&lt;/a&gt;,
 channels, meaning we can read 8 sensors values with a resolution of 1024 each 
 (2^10). This will map our input voltage of 0 - 3.3 volts to an integer between
 0 and 1023.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="LED Circuit" src="http://jack.minardi.org/static/images/pot-circuit.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="LED Circuit" src="http://jack.minardi.org/images/pot-circuit.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;I've turned the Pi into ephemeral yellow labels to simplify the diagram&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;To talk to the chip we will need a python package called
 &lt;a href="https://github.com/doceme/py-spidev"&gt;spidev&lt;/a&gt;. For more information about the
@@ -8521,7 +8521,7 @@ encode information in the duration of a high voltage pulse on the GPIO pins.
 Most hobby servos follow a standard pulse width meaning. A 0.5 ms pulse means
 go to your min position and a 2.5 ms pulse means go to your max position. Now
 repeat this pulse every 20 ms and you're controlling a servo.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="PWM Diagram" src="http://jack.minardi.org/static/images/pwm.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="PWM Diagram" src="http://jack.minardi.org/images/pwm.png" /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;The pulse width is much more critical than the frequency&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;These kind of timings are not possible with Python. In fact, they aren't really
 possible with a modern operating system. An interrupt could come in at any time
@@ -8536,7 +8536,7 @@ simpler. You can find my library here:&lt;/p&gt;
 &lt;p&gt;https://github.com/jminardi/RobotBrain&lt;/p&gt;
 &lt;p&gt;Simple connect the servo to 5v and ground on your Pi and then connect the
 control wire to pin 4.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Servo Diagram" src="http://jack.minardi.org/static/images/servo.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Servo Diagram" src="http://jack.minardi.org/images/servo.png" /&gt;&lt;/p&gt;
 &lt;p&gt;The python code is quite simple:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;time&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
