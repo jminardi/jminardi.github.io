@@ -16,7 +16,7 @@ hardware control.
 
 [Video](http://www.youtube.com/watch?v=TCGLzNf9yHI) | 
 [Slides](https://docs.google.com/a/minardi.org/presentation/d/19ErI3QJfSZ8uIBDV2MK0VvFkfcgkvK-Tm0Sz84AxvNI/edit#slide=id.gc8567ed3_046) | 
-[Blog Post](http://jack.minardi.org/raspberry_pi/opendevreal_world)
+[Blog Post](/raspberry_pi/opendevreal_world)
 
 <br>
 ## Lightning Talk at PyCon (3/19/13)

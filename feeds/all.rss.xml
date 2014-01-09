@@ -24,7 +24,7 @@ source, such as a fountain, TV, Christmas tree lights, projector, etc.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;* affiliate links&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Our goal it to hack into the remote that controls the outlet, allowing us to
 toggle the buttons with the Raspberry Pi's GPIO pins. Check out my page on
-&lt;a href="http://jack.minardi.org/raspberry_pi/opendevreal_world/"&gt;hardware control&lt;/a&gt; for more information about GPIO pins. We will then set
+&lt;a href="/raspberry_pi/opendevreal_world/"&gt;hardware control&lt;/a&gt; for more information about GPIO pins. We will then set
 up a simple webserver with &lt;a href="http://flask.pocoo.org/"&gt;Flask&lt;/a&gt; to allow remote control of the outlets
 from anywhere with a web connection.&lt;/p&gt;
 &lt;h2&gt;Hacking into the Remote&lt;/h2&gt;
@@ -263,7 +263,7 @@ able to easily request the latest organization events using this URL:&lt;/p&gt;
 Internet easily. There are a couple of methods for connecting an Arduino to the
 Internet, and in the end I choose to use an &lt;a href="http://electricimp.com/"&gt;Electric Imp&lt;/a&gt; and breakout
 board. (I choose this because the company was giving them away at the
-&lt;a href="http://jack.minardi.org/raspberry_pi/ycombinator-hardware-hackathon/"&gt;YCombinator Hardware Hackathon&lt;/a&gt;, so I just had one lying around.)&lt;/p&gt;
+&lt;a href="/raspberry_pi/ycombinator-hardware-hackathon/"&gt;YCombinator Hardware Hackathon&lt;/a&gt;, so I just had one lying around.)&lt;/p&gt;
 &lt;p&gt;The Electric Imp breakout board I have has to be programmed in a language
 called &lt;a href="http://www.squirrel-lang.org/doc/squirrel3.html"&gt;Squirrel&lt;/a&gt;, which is a C like language designed for embedded
 platforms. Programming with the Imp involves writing code for two platforms:
@@ -8590,7 +8590,7 @@ object in your hand.&lt;/p&gt;
 &lt;p&gt;To control servos and read from sensors usually you use GPIO pins. In our case
 we used the GPIO pins on a Raspberry Pi. If you would like to know more about
 hardware control with a Raspberry Pi check out my
-&lt;a href="http://jack.minardi.org/raspberry_pi/opendevreal_world/"&gt;article&lt;/a&gt; on that
+&lt;a href="/raspberry_pi/opendevreal_world/"&gt;article&lt;/a&gt; on that
 topic.&lt;/p&gt;
 &lt;p&gt;The basic idea is that you can set the voltage on a GPIO pin high (5 volts) or
 low (0 volts). Sending the correct sequence of high and low pulses to a servo

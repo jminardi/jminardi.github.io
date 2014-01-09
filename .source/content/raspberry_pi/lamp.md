@@ -36,7 +36,7 @@ toggle the buttons with the Raspberry Pi's GPIO pins. Check out my page on
 up a simple webserver with [Flask][1] to allow remote control of the outlets
 from anywhere with a web connection.
 
-[0]: http://jack.minardi.org/raspberry_pi/opendevreal_world/
+[0]: /raspberry_pi/opendevreal_world/
 [1]: http://flask.pocoo.org/
 
 ## Hacking into the Remote

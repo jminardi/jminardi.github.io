@@ -92,7 +92,7 @@ board. (I choose this because the company was giving them away at the
 
 [4]: http://developer.github.com/
 [5]: http://electricimp.com/
-[6]: http://jack.minardi.org/raspberry_pi/ycombinator-hardware-hackathon/
+[6]: /raspberry_pi/ycombinator-hardware-hackathon/
 
 The Electric Imp breakout board I have has to be programmed in a language
 called [Squirrel][7], which is a C like language designed for embedded

@@ -8,7 +8,7 @@ This glove was my winning entry in the YCombinator Hardware Hackathon. I led a
 team of six engineers in designing and prototyping a novel form of
 human-computer interaction.
 
-[More Info](http://jack.minardi.org/raspberry_pi/ycombinator-hardware-hackathon/) | 
+[More Info](/raspberry_pi/ycombinator-hardware-hackathon/) | 
 [TechCrunch Interview](http://techcrunch.com/2013/02/26/y-combinator-hardware-hackathon-winner/)
 
 <br>
@@ -19,7 +19,7 @@ I built a small car that is steered wirelessly through an Android phone. This
 project served as an introduction to Raspberry Pi hardware control and Android
 programming.
 
-[More Info](http://jack.minardi.org/raspberry_pi/android-controlled-toy-car/) | 
+[More Info](/raspberry_pi/android-controlled-toy-car/) | 
 [Youtube Video](http://www.youtube.com/watch?v=tfuv-B1X3ck) | 
 [Raspi Code](https://github.com/jminardi/RobotBrain/tree/master/robot_brain/servers/car_server) | 
 [Android Code](https://github.com/jminardi/RobotBrain-Controller) 
@@ -53,7 +53,7 @@ of many useful sensors and actuators.
 I connected a lamp to the Internet with a Raspberry Pi, RF controlled outlets,
 and some software. The lamp can be easily controlled by anyone with the URL.
 
-[More Info](http://jack.minardi.org/raspberry_pi/make-an-internet-controlled-lamp-with-a-raspberry-pi-and-flask/) | 
+[More Info](/raspberry_pi/make-an-internet-controlled-lamp-with-a-raspberry-pi-and-flask/) | 
 [Source Code](https://github.com/jminardi/lamp_control)
 
 <br>

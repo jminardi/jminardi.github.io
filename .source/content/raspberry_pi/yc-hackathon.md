@@ -53,7 +53,7 @@ Hardware I/O
 To control servos and read from sensors usually you use GPIO pins. In our case
 we used the GPIO pins on a Raspberry Pi. If you would like to know more about
 hardware control with a Raspberry Pi check out my
-[article](http://jack.minardi.org/raspberry_pi/opendevreal_world/) on that
+[article](/raspberry_pi/opendevreal_world/) on that
 topic.
 
 The basic idea is that you can set the voltage on a GPIO pin high (5 volts) or
