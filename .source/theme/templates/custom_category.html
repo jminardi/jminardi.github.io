@@ -28,14 +28,13 @@
 
         {% for article in articles %}        
 
+            {% if article.category == page.title %}
             <li>
-                {% if article.category == page.title %}
-                    <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" >
-                        {{ article.title }}
-                    </a>
-                {% endif %}
+                <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" >
+                    {{ article.title }}
+                </a>
             </li>
-
+            {% endif %}
         {% endfor %}
 
     </ol>
