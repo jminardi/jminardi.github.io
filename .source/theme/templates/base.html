@@ -28,11 +28,15 @@
         <nav>
             <ul>
             {% for page in PAGES %}
-                <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}{% if not loop.last %} ::{% endif %}</li>
+                <li>
+                    <a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a>{% if not loop.last %} ::{% endif %}
+                </li>
             {% endfor %}
             {% if not CATEGORY_SAVE_AS == None %}
                 {% for cat, null in categories %}
-                    <li><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a>{% if not loop.last %} ::{% endif %}</li>
+                    <li>
+                        <a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a>{% if not loop.last %} ::{% endif %}
+                    </li>
                 {% endfor %}
             {% endif %}
             </ul>
@@ -45,11 +49,15 @@
             <nav>
                 <ul>
                 {% for page in PAGES %}
-                    <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}{% if not loop.last %} ::{% endif %}</li>
+                    <li>
+                        <a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a>{% if not loop.last %} ::{% endif %}
+                    </li>
                 {% endfor %}
                 {% if not CATEGORY_SAVE_AS == None %}
                     {% for cat, null in categories %}
-                        <li><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a>{% if not loop.last %} ::{% endif %}</li>
+                        <li>
+                            <a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a>{% if not loop.last %} ::{% endif %}
+                        </li>
                     {% endfor %}
                 {% endif %}
                 </ul>
