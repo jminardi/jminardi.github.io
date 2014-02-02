@@ -29,7 +29,7 @@ FEED_ALL_RSS = 'feeds/all.rss.xml'
 
 RELATIVE_URLS = True
 
-STATIC_PATHS = ['images', 'files']
+STATIC_PATHS = ['images', 'files', 'js']
 
 PLUGIN_PATH = './plugins'
 PLUGINS = ['ipythonnb']
