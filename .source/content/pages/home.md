@@ -11,13 +11,14 @@ I put my codes on [github](http://www.github.com/jminardi) and my tweets on
 
 I am an electrical engineer by training, and a software developer by craft. I
 went to school at [Vanderbilt University in Nashville
-TN](http://engineering.vanderbilt.edu/). I am currently employed at [Enthought
-Inc.](https://www.enthought.com/) developing scientific software applications.
+TN](http://engineering.vanderbilt.edu/). I am currently employed at [Harvard
+University's Lewis Lab](http://lewisgroup.seas.harvard.edu/) developing next
+generation 3D printers and the software that drives them.
 
-My goal is to make it simple for scientists to play with their data. I
-accomplish this with intuitive UIs on top of powerful data processing. In my
-free time I like to explore and develop ideas in the world of human computer
-interfaces.
+My goal is to make it simple for scientists to play with their data and create
+new objects. I accomplish this with intuitive UIs on top of powerful machines.
+In my free time I like to explore and develop ideas in the world of human
+computer interfaces.
 
 I recently led the winning team at the [YCombinator Hardware
 Hackathon](/raspberry_pi/ycombinator-hardware-hackathon/),
