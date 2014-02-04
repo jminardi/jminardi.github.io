@@ -12,18 +12,21 @@ I put my codes on [github](http://www.github.com/jminardi) and my tweets on
 I am an electrical engineer by training, and a software developer by craft. I
 went to school at [Vanderbilt University in Nashville
 TN](http://engineering.vanderbilt.edu/). I am currently employed at [Harvard
-University's Lewis Lab](http://lewisgroup.seas.harvard.edu/) developing next
-generation 3D printers and the software that drives them.
+University's Lewis Lab](http://lewisgroup.seas.harvard.edu/) developing new 3D
+printers and the software that drives them. The 3D printers use next generation
+materials to produce electronics and flexible sensors for robotics and medial
+applications.
 
-My goal is to make it simple for scientists to play with their data and create
-new objects. I accomplish this with intuitive UIs on top of powerful machines.
-In my free time I like to explore and develop ideas in the world of human
-computer interfaces.
+I enjoy expanding the human-computer interface. I led a team at the [2013
+YCombinator Hardware Hackathon][0] where we did just that. My team took first
+prize for developing a novel haptic feedback glove, which you can see in my
+[TechCrunch interview][1].
 
-I recently led the winning team at the [YCombinator Hardware
-Hackathon](/raspberry_pi/ycombinator-hardware-hackathon/),
-where we designed and prototyped a novel form of human-computer interaction.
-You can see me demo the design in my [TechCrunch
-interview](http://techcrunch.com/2013/02/26/y-combinator-hardware-hackathon-winner/).
-[Here](https://gist.github.com/jminardi/5022297) is the script that powered the
-demo.
+I've been known to enjoy programming my [raspberry pi][3] to
+interface with the real world. Check out my [projects][2] page to see
+some of the things I've been up to recently.
+
+[0]: /raspberry_pi/ycombinator-hardware-hackathon/
+[1]: http://techcrunch.com/2013/02/26/y-combinator-hardware-hackathon-winner/
+[2]: /projects
+[3]: /raspberry_pi
